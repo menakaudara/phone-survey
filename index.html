@@ -4,69 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Usage Survey</title>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        form {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        input, button {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        button {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+        input, button { width: 90%; padding: 10px; margin: 10px 0; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
     </style>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
-    <h2>Phone Usage Survey V3</h2>
+    <h2>Phone Usage Survey</h2>
     <p>Fill in your details to help us understand phone usage patterns.</p>
     
-    <form id="survey-form" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" target="hidden_iframe" onsubmit="return validateForm(event);">
-    <input type="text" name="name" placeholder="Your Name" required><br>
-    <input type="number" name="usageHours" placeholder="Usage Hours per Day" required><br>
-    <input type="number" name="chargingHours" placeholder="Charging Hours per Day" required><br>
-    <input type="number" name="dataUsage" placeholder="Data Usage in GB" required><br>
-
-    <div class="g-recaptcha" data-sitekey="6Lel2v8qAAAAACaPN9D-m3z1DaevbcPC66xRUTnx"></div>
-
-    <button type="submit">Submit</button>
-</form>
-
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
+    <form id="survey-form" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <input type="number" name="usageHours" placeholder="Usage Hours per Day" required><br>
+        <input type="number" name="chargingHours" placeholder="Charging Hours per Day" required><br>
+        <input type="number" name="dataUsage" placeholder="Data Usage in GB" required><br>
+        
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+        
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
-        function successMessage() {
-            alert("Survey submitted successfully!");
-        }
-
-function validateForm(event) {
-    var response = grecaptcha.getResponse();
-    if (!response) {
-        alert("Please complete the reCAPTCHA");
-        event.preventDefault(); // Stop form submission
-        return false;
-    }
-    return true;
-}
-        
+        grecaptcha.ready(function() {
+            grecaptcha.execute("6Lel2v8qAAAAACaPN9D-m3z1DaevbcPC66xRUTnx", { action: "submit" }).then(function(token) {
+                document.getElementById("recaptchaResponse").value = token;
+            });
+        });
     </script>
 </body>
 </html>

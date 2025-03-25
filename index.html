@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <h2>Phone Usage Survey V4</h2>
+    <h2>Phone Usage Survey V5</h2>
     <p>Fill in your details to help us understand phone usage patterns.</p>
     
     <form id="survey-form" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST">
@@ -30,7 +30,7 @@
 
     <script>
         grecaptcha.ready(function() {
-            grecaptcha.execute("6LcK4P8qAAAAAOCFUvPb_k3r3Ovxjap0YHoZbuq8", { action: "submit" }).then(function(token) {
+            grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
                 document.getElementById("recaptchaResponse").value = token;
             });
         });

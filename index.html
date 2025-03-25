@@ -31,7 +31,7 @@
                 dataUsage: document.getElementById('dataUsage').value
             };
             
-            fetch('YOUR_GOOGLE_SCRIPT_URL_HERE', {
+            fetch('https://script.google.com/macros/s/AKfycbwQY1wiroU0Ulor_bXGjfpMf7q7W9jupAyIbDHXEozuIMaCKlwniMzUbHZfoq7vsKl8xA/exec', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: { 'Content-Type': 'application/json' }

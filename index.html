@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <h2>Phone Usage Survey</h2>
+    <h2>Phone Usage Survey V4</h2>
     <form id="survey-form">
         <input type="text" id="name" placeholder="Your Name" required>
         <input type="number" id="usageHours" placeholder="Usage Hours per Day" required>
@@ -46,37 +46,31 @@
 
     <script>
         // Handle form submission
-        document.getElementById('survey-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Gather data from the form
-            const data = {
-                name: document.getElementById('name').value,
-                usageHours: document.getElementById('usageHours').value,
-                chargingHours: document.getElementById('chargingHours').value,
-                dataUsage: document.getElementById('dataUsage').value
-            };
+       document.getElementById('survey-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const data = {
+        name: document.getElementById('name').value,
+        usageHours: document.getElementById('usageHours').value,
+        chargingHours: document.getElementById('chargingHours').value,
+        dataUsage: document.getElementById('dataUsage').value
+    };
 
-            // Replace with your Google Apps Script Web App URL
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbwQY1wiroU0Ulor_bXGjfpMf7q7W9jupAyIbDHXEozuIMaCKlwniMzUbHZfoq7vsKl8xA/exec';
+    fetch('YOUR_GOOGLE_SCRIPT_URL_HERE', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.text())
+    .then(data => alert('Survey submitted successfully!'))
+    .catch(error => {
+        console.error('Error submitting survey:', error);
+        alert('Error submitting survey: ' + error.message);
+    });
+});
 
-            // Send data to Google Apps Script
-            fetch(scriptUrl, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.text())
-            .then(data => {
-                alert('Survey submitted successfully!');
-            })
-            .catch(error => {
-                console.error('Error submitting survey:', error); // Log the exact error in the console
-                alert('Error submitting survey: ' + error.message); // Show the error message in an alert box
-            });
-        });
     </script>
 
 </body>

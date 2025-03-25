@@ -33,18 +33,22 @@
             background-color: #218838;
         }
     </style>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <h2>Phone Usage Survey V1</h2>
     <p>Fill in your details to help us understand phone usage patterns.</p>
     
-    <form action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" target="hidden_iframe" onsubmit="successMessage();">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="number" name="usageHours" placeholder="Usage Hours per Day" required><br>
-        <input type="number" name="chargingHours" placeholder="Charging Hours per Day" required><br>
-        <input type="number" name="dataUsage" placeholder="Data Usage in GB" required><br>
-        <button type="submit">Submit</button>
-    </form>
+    <form id="survey-form" action="YOUR_GOOGLE_SCRIPT_URL_HERE" method="POST" target="hidden_iframe" onsubmit="return validateForm(event);">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="number" name="usageHours" placeholder="Usage Hours per Day" required><br>
+    <input type="number" name="chargingHours" placeholder="Charging Hours per Day" required><br>
+    <input type="number" name="dataUsage" placeholder="Data Usage in GB" required><br>
+
+    <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
+
+    <button type="submit">Submit</button>
+</form>
 
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 
@@ -52,6 +56,17 @@
         function successMessage() {
             alert("Survey submitted successfully!");
         }
+
+function validateForm(event) {
+    var response = grecaptcha.getResponse();
+    if (!response) {
+        alert("Please complete the reCAPTCHA");
+        event.preventDefault(); // Stop form submission
+        return false;
+    }
+    return true;
+}
+        
     </script>
 </body>
 </html>

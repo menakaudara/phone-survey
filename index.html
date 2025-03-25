@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Usage Survey V2</title>
+    <title>Phone Usage Survey</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; }
         form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <h2>Phone Usage Survey</h2>
+    <h2>Phone Usage Survey V3</h2>
     <form id="survey-form">
         <input type="text" id="name" placeholder="Your Name" required>
         <input type="number" id="usageHours" placeholder="Usage Hours per Day" required>
@@ -38,7 +38,8 @@
             })
             .then(response => response.text())
             .then(data => alert('Survey submitted successfully!'))
-            .catch(error => alert('Error submitting survey.'));
+            .catch(error => {
+                alert('Error submitting survey: ' + error.message); // Show error in the alert box
         });
     </script>
 

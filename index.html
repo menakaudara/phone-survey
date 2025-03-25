@@ -39,6 +39,7 @@
             .then(response => response.text())
             .then(data => alert('Survey submitted successfully!'))
             .catch(error => {
+                console.error('Error submitting survey:', error);
                 alert('Error submitting survey: ' + error.message); // Show error in the alert box
         });
     </script>

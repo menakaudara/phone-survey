@@ -35,7 +35,7 @@
 </head>
 <body>
 
-    <h2>Phone Usage Survey V5</h2>
+    <h2>Phone Usage Survey V6</h2>
     <form id="survey-form">
         <input type="text" id="name" placeholder="Your Name" required>
         <input type="number" id="usageHours" placeholder="Usage Hours per Day" required>
@@ -56,7 +56,7 @@
         dataUsage: document.getElementById('dataUsage').value
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbwQY1wiroU0Ulor_bXGjfpMf7q7W9jupAyIbDHXEozuIMaCKlwniMzUbHZfoq7vsKl8xA/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyKdDNUlTl1U5ciGWOSjQFtknDPLoNLJW8eoFy8_BkhnggsIOysfJvTEeHETMjoeEWneA/exec', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

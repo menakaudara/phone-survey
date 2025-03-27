@@ -4,34 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Application</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr"></script>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
-        .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
-        h2 { border-bottom: 2px solid #007BFF; padding-bottom: 10px; }
-        input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
-        button { background-color: #28a745; color: white; border: none; cursor: pointer; font-size: 16px; }
-        button:hover { background-color: #218838; }
-        .back-btn { background-color: #007BFF; }
-        .back-btn:hover { background-color: #0056b3; }
-        .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; display: inline-block; }
-        #success-message { display: none; color: green; font-weight: bold; margin-top: 20px; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-        <h2 id="loan-title">Loan Application V4</h2>
+        <h2 id="title">Loan Application</h2>
+        <p id="description">Fill in your details below.</p>
         
-        <div>
-            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
-            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
+        <div class="lang-switch">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('si')">සිංහල</button>
         </div>
 
-        <form id="loan-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">
-            <input type="text" name="name" id="name" maxlength="100" required placeholder="Your Name"><br>
-            <input type="text" name="nic" id="nic" maxlength="20" required placeholder="NIC Number"><br>
-            <input type="text" name="address" id="address" maxlength="200" required placeholder="Address"><br>
+        <form id="survey-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">
+            <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
+            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
+            <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
 
             <select name="district" id="district" required>
                 <option value="">Select District</option>
@@ -39,93 +27,35 @@
                 <option value="Gampaha">Gampaha</option>
                 <option value="Galle">Galle</option>
                 <option value="Matara">Matara</option>
-            </select><br>
-            
-            <input type="text" name="bankBranch" id="bankBranch" maxlength="20" required placeholder="Bank Branch"><br>
-            
+            </select>
+
+            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
+
             <select name="loanScheme" id="loanScheme" required>
                 <option value="">Select Loan Scheme</option>
                 <option value="Scheme1">Scheme 1</option>
                 <option value="Scheme2">Scheme 2</option>
                 <option value="Scheme3">Scheme 3</option>
                 <option value="Scheme4">Scheme 4</option>
-            </select><br>
-            
-            <input type="text" name="loanNo" id="loanNo" maxlength="20" required placeholder="Loan Number"><br>
-            
+            </select>
+
+            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
+
             <select name="victim" id="victim" required>
                 <option value="">Are you a victim?</option>
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
-            </select><br>
-            
-            <input type="text" name="remarks" id="remarks" maxlength="200" placeholder="Remarks"><br>
-            
+            </select>
+
+            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
+
             <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
-
-            <button type="submit" id="submitBtn">Submit</button>
-            <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+            
+            <button type="submit">Submit</button>
+            <button type="button" onclick="window.location.href='index.html'">Back to Home</button>
         </form>
-
-        <p id="success-message">✅ Your loan details have been submitted successfully! Redirecting...</p>
     </div>
 
-    <script>
-        const translations = {
-            en: {
-                "loan-title": "Loan Application",
-                "submitBtn": "Submit",
-                "name": "Your Name",
-                "nic": "NIC Number",
-                "address": "Address",
-                "bankBranch": "Bank Branch",
-                "loanNo": "Loan Number",
-                "remarks": "Remarks",
-                "success-message": "✅ Your loan details have been submitted successfully! Redirecting..."
-            },
-            si: {
-                "loan-title": "ණය අයදුම්පත",
-                "submitBtn": "ඉදිරිපත් කරන්න",
-                "name": "ඔබගේ නම",
-                "nic": "ජාතික හැඳුනුම්පත",
-                "address": "ලිපිනය",
-                "bankBranch": "බැංකු ශාඛාව",
-                "loanNo": "ණය අංකය",
-                "remarks": "සටහන්",
-                "success-message": "✅ ඔබගේ දත්ත සාර්ථකව ඉදිරිපත් විය! නැවත යොමුවෙමින්..."
-            }
-        };
-
-        function setLanguage(lang) {
-            localStorage.setItem("preferredLanguage", lang);
-            applyLanguage(lang);
-        }
-
-        function applyLanguage(lang) {
-            document.getElementById("loan-title").innerText = translations[lang]["loan-title"];
-            document.getElementById("submitBtn").innerText = translations[lang]["submitBtn"];
-            document.getElementById("success-message").innerText = translations[lang]["success-message"];
-
-            document.getElementById("district").options[0].text = translations[lang]["district-label"];
-            document.getElementById("loanScheme").options[0].text = translations[lang]["loanScheme-label"];
-            document.getElementById("victim").options[0].text = translations[lang]["victim-label"];
-        }
-
-        function loadLanguage() {
-            const savedLang = localStorage.getItem("preferredLanguage") || "en";
-            applyLanguage(savedLang);
-        }
-
-        window.onload = loadLanguage;
-
-        document.getElementById("loan-form").onsubmit = function(event) {
-            event.preventDefault();
-            document.getElementById("success-message").style.display = "block";
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 3000);
-        };
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>

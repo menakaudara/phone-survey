@@ -4,14 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Application</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://www.google.com/recaptcha/api.js?render=RECAPTCHA_SITE_KEY"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .lang-switch {
+            margin-bottom: 15px;
+        }
+
+        .lang-switch button {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .lang-switch button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #dc3545;
+        }
+
+        .back-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
         <h2 id="title">Loan Application</h2>
         <p id="description">Fill in your details below.</p>
-        
+
         <div class="lang-switch">
             <button onclick="setLanguage('en')">English</button>
             <button onclick="setLanguage('si')">සිංහල</button>
@@ -53,10 +132,76 @@
             <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
             <button type="submit">Submit</button>
-            <button type="button" onclick="window.location.href='index.html'">Back to Home</button>
+            <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const translations = {
+            en: {
+                title: "Loan Application",
+                description: "Fill in your details below.",
+                submitBtn: "Submit",
+                name: "Your Name",
+                nic: "NIC Number",
+                address: "Address",
+                district: "Select District",
+                bankBranch: "Bank Branch",
+                loanScheme: "Select Loan Scheme",
+                loanNo: "Loan Number",
+                victim: "Are you a victim?",
+                remarks: "Remarks"
+            },
+            si: {
+                title: "ණය අයදුම්පත",
+                description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
+                submitBtn: "ඉදිරිපත් කරන්න",
+                name: "ඔබගේ නම",
+                nic: "ජාතික හැඳුනුම්පත",
+                address: "ලිපිනය",
+                district: "දිස්ත්‍රික්කය තෝරන්න",
+                bankBranch: "බැංකු ශාඛාව",
+                loanScheme: "ණය යෝජනා ක්‍රමය තෝරන්න",
+                loanNo: "ණය අංකය",
+                victim: "ඔබට හානි වියද?",
+                remarks: "සටහන්"
+            }
+        };
+
+        function setLanguage(lang) {
+            localStorage.setItem("lang", lang); // Store language preference
+            document.getElementById("title").innerText = translations[lang].title;
+            document.getElementById("description").innerText = translations[lang].description;
+            document.getElementById("name").placeholder = translations[lang].name;
+            document.getElementById("nic").placeholder = translations[lang].nic;
+            document.getElementById("address").placeholder = translations[lang].address;
+            document.getElementById("district").options[0].text = translations[lang].district;
+            document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
+            document.getElementById("loanScheme").options[0].text = translations[lang].loanScheme;
+            document.getElementById("loanNo").placeholder = translations[lang].loanNo;
+            document.getElementById("victim").options[0].text = translations[lang].victim;
+            document.getElementById("remarks").placeholder = translations[lang].remarks;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedLang = localStorage.getItem("lang") || "en";
+            setLanguage(savedLang);
+
+            // reCAPTCHA execution
+            grecaptcha.ready(function() {
+                grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
+                    document.getElementById("recaptchaResponse").value = token;
+                });
+            });
+
+            // Form submission success handling
+            document.getElementById("survey-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                alert("Form submitted successfully!");
+                window.location.href = "index.html";
+            });
+        });
+    </script>
+
 </body>
 </html>

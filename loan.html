@@ -240,6 +240,49 @@
                 });
             });
         });
+
+document.getElementById("survey-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Show a loading message while submitting
+            const submitBtn = document.querySelector("button[type='submit']");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Submitting...";
+
+            // Prepare form data
+            const formData = new FormData(document.getElementById("survey-form"));
+            formData.append("recaptcha_response", document.getElementById("recaptchaResponse").value);
+
+            // Submit the form using Fetch API
+            fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json()) // Assuming Apps Script returns a JSON response
+            .then(data => {
+                // Handle success or error based on the response from the Apps Script
+                if (data.success) {
+                    // Display success message
+                    alert("Form submitted successfully!");
+                    window.location.href = "index.html"; // Redirect to the home page
+                } else {
+                    // Display error message
+                    alert("There was an error submitting the form. Please try again.");
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Submit";
+                }
+            })
+            .catch(error => {
+                // Handle network or server error
+                console.error("Error submitting form:", error);
+                alert("There was an error submitting the form. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit";
+            });
+        });
+    });
+
+        
     </script>
 
 </body>

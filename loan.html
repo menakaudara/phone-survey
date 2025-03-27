@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+        input, select, button { width: 90%; padding: 10px; margin: 10px 0; }
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        .back-btn { background-color: #007BFF; padding: 10px; border: none; color: white; cursor: pointer; }
+        .back-btn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h2>Loan Application</h2>
+    <form id="survey-form" action="GOOGLE_APP_URL" method="POST" onsubmit="handleSubmit(event)">
+        <input type="text" name="name" placeholder="Your Name" maxlength="100" required><br>
+        <input type="text" name="nic" placeholder="NIC Number" maxlength="20" required><br>
+        <input type="text" name="address" placeholder="Address" maxlength="200" required><br>
+        
+        <select name="district" required>
+            <option value="">Select District</option>
+            <option value="Colombo">Colombo</option>
+            <option value="Gampaha">Gampaha</option>
+            <option value="Galle">Galle</option>
+            <option value="Matara">Matara</option>
+        </select><br>
+        
+        <input type="text" name="bankBranch" placeholder="Bank Branch" maxlength="20" required><br>
+        
+        <select name="loanScheme" required>
+            <option value="">Select Loan Scheme</option>
+            <option value="Scheme1">Scheme 1</option>
+            <option value="Scheme2">Scheme 2</option>
+            <option value="Scheme3">Scheme 3</option>
+            <option value="Scheme4">Scheme 4</option>
+        </select><br>
+        
+        <input type="text" name="loanNo" placeholder="Loan Number" maxlength="20" required><br>
+        
+        <select name="victim" required>
+            <option value="">Are you a victim?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        
+        <input type="text" name="remarks" placeholder="Remarks" maxlength="200"><br>
+        
+        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+        
+        <button type="submit">Submit</button>
+        <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+    </form>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById("survey-form");
+            fetch(form.action, {
+                method: "POST",
+                body: new FormData(form)
+            })
+            .then(response => response.text())
+            .then(data => {
+                if (data.includes("Success")) {
+                    window.location.href = "success.html";
+                } else {
+                    alert("Submission Failed: " + data);
+                }
+            })
+            .catch(error => alert("Error: " + error));
+        }
+    </script>
+</body>
+</html>

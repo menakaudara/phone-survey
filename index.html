@@ -5,77 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        h2 {
-            border-bottom: 2px solid #1a5710;
-            padding-bottom: 5px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3ba32a;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        .btn:hover {
-            background-color: #1a5710;
-        }
-
-        .lang-switch {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-
-        .lang-btn {
-            cursor: pointer;
-            color: #1a73e8; /* Google's blue color */
-            text-decoration: none;
-            padding: 5px;
-            font-weight: bold;
-        }
-
-        .lang-btn:hover {
-            text-decoration: underline;
-        }
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .btn { display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        .btn:hover { background-color: #0056b3; }
+        h2 { border-bottom: 2px solid #007BFF; padding-bottom: 5px; }
+        .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="title">My Portfolio</h1>
-
-        <div class="lang-switch">
-            <span class="lang-btn" data-lang="en" onclick="updateOptions('en')">English</span> |
-            <span class="lang-btn" data-lang="si" onclick="updateOptions('si')">සිංහල</span>
+        <div>
+            <span class="lang-btn" data-lang="en">English</span> |
+            <span class="lang-btn" data-lang="si">සිංහල</span>
         </div>
 
         <h2 id="about-title">About Me</h2>
@@ -95,6 +38,7 @@
     </div>
 
     <script>
+        // Define translations for both languages
         const translations = {
             en: {
                 title: "My Portfolio",
@@ -126,31 +70,32 @@
             }
         };
 
+        // Function to update language
         function setLanguage(lang) {
-            localStorage.setItem("selectedLanguage", lang);
+            localStorage.setItem("selectedLanguage", lang);  // Store language in localStorage
+
+            // Update text on page according to the selected language
             Object.keys(translations[lang]).forEach(id => {
-                document.getElementById(id).innerText = translations[lang][id];
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerText = translations[lang][id];
+                }
             });
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        // Load saved language preference or default to English
+        document.addEventListener("DOMContentLoaded", function () {
             const savedLang = localStorage.getItem("selectedLanguage") || "en";
             setLanguage(savedLang);
-        });
 
-function setLanguage(lang) {
-        localStorage.setItem("selectedLanguage", lang);
-        Object.keys(translations[lang]).forEach(id => {
-            document.getElementById(id).innerText = translations[lang][id];
+            // Add event listeners for the language buttons
+            document.querySelectorAll('.lang-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const lang = this.getAttribute('data-lang');
+                    setLanguage(lang);
+                });
+            });
         });
-    }
-
-    // Apply the stored language preference on page load
-    document.addEventListener("DOMContentLoaded", function () {
-        const savedLang = localStorage.getItem("selectedLanguage") || "en";
-        setLanguage(savedLang);
-    });
-        
     </script>
 </body>
 </html>

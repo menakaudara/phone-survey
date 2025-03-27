@@ -10,26 +10,70 @@
         .btn { display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
         .btn:hover { background-color: #0056b3; }
         h2 { border-bottom: 2px solid #007BFF; padding-bottom: 5px; }
+        .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>My Portfolio</h1>
-        
-        <h2>About Me</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+        <h1 id="title">My Portfolio</h1>
+        <div>
+            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
+            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
+        </div>
 
-        <h2>Experience</h2>
-        <p>✔ Noteworthy achievement here.</p>
-        <p>✔ Noteworthy achievement here.</p>
-        <p>✔ Noteworthy achievement here.</p>
+        <h2 id="about-title">About Me</h2>
+        <p id="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
 
-        <h2>Projects</h2>
-        <p>📌 Project title 1</p>
-        <p>📌 Project title 2</p>
-        <p>📌 Project title 3</p>
+        <h2 id="exp-title">Experience</h2>
+        <p id="exp-1">✔ Noteworthy achievement here.</p>
+        <p id="exp-2">✔ Noteworthy achievement here.</p>
+        <p id="exp-3">✔ Noteworthy achievement here.</p>
 
-        <a href="loan.html" class="btn">Submit Loan Details</a>
+        <h2 id="projects-title">Projects</h2>
+        <p id="project-1">📌 Project title 1</p>
+        <p id="project-2">📌 Project title 2</p>
+        <p id="project-3">📌 Project title 3</p>
+
+        <a href="loan.html" id="loan-btn" class="btn">Submit Loan Details</a>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "My Portfolio",
+                "about-title": "About Me",
+                "about-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
+                "exp-title": "Experience",
+                "exp-1": "✔ Noteworthy achievement here.",
+                "exp-2": "✔ Noteworthy achievement here.",
+                "exp-3": "✔ Noteworthy achievement here.",
+                "projects-title": "Projects",
+                "project-1": "📌 Project title 1",
+                "project-2": "📌 Project title 2",
+                "project-3": "📌 Project title 3",
+                "loan-btn": "Submit Loan Details"
+            },
+            si: {
+                title: "මගේ පැතිකඩ",
+                "about-title": "මගේ විස්තර",
+                "about-text": "ඔබේ විස්තර මෙහි ඇතුළත් කරන්න.",
+                "exp-title": "අත්දැකීම්",
+                "exp-1": "✔ සැලකිය යුතු ජයග්‍රහණයක් මෙහි.",
+                "exp-2": "✔ සැලකිය යුතු ජයග්‍රහණයක් මෙහි.",
+                "exp-3": "✔ සැලකිය යුතු ජයග්‍රහණයක් මෙහි.",
+                "projects-title": "ව්‍යාපෘති",
+                "project-1": "📌 ව්‍යාපෘතිය 1",
+                "project-2": "📌 ව්‍යාපෘතිය 2",
+                "project-3": "📌 ව්‍යාපෘතිය 3",
+                "loan-btn": "ණය විස්තර යොමු කරන්න"
+            }
+        };
+
+        function setLanguage(lang) {
+            Object.keys(translations[lang]).forEach(id => {
+                document.getElementById(id).innerText = translations[lang][id];
+            });
+        }
+    </script>
 </body>
 </html>

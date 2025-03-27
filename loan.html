@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V9",
+            title: "Loan Application V10",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -248,7 +248,7 @@
                         resetSubmitButton();
                         return;
                     }
-
+alert(token);
                     document.getElementById("recaptchaResponse").value = token;
                     submitForm(); // Call function to send form data
                 })

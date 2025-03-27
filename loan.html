@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V1",
+            title: "Loan Application V2",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -284,9 +284,12 @@
                 resetSubmitButton();
             });
 
-            alert(response.json());
+            console.log("Form data:", formData);
+for (let [key, value] of formData.entries()) {
+    console.log(`${key}: ${value}`);
+}
 
-            console.log("Form data:", formData); 
+            
         }
 
         function resetSubmitButton() {

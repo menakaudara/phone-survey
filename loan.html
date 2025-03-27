@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Application V2</title>
+    <title>Loan Application</title>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
@@ -21,7 +21,7 @@
 <body>
 
     <div class="container">
-        <h2 id="loan-title">Loan Application</h2>
+        <h2 id="loan-title">Loan Application V3</h2>
         
         <div>
             <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
@@ -33,7 +33,6 @@
             <input type="text" name="nic" id="nic" maxlength="20" required placeholder="NIC Number"><br>
             <input type="text" name="address" id="address" maxlength="200" required placeholder="Address"><br>
 
-            <label for="district" id="district-label">Select District</label>
             <select name="district" id="district" required>
                 <option value="">Select District</option>
                 <option value="Colombo">Colombo</option>
@@ -44,7 +43,6 @@
             
             <input type="text" name="bankBranch" id="bankBranch" maxlength="20" required placeholder="Bank Branch"><br>
             
-            <label for="loanScheme" id="loanScheme-label">Select Loan Scheme</label>
             <select name="loanScheme" id="loanScheme" required>
                 <option value="">Select Loan Scheme</option>
                 <option value="Scheme1">Scheme 1</option>
@@ -55,7 +53,6 @@
             
             <input type="text" name="loanNo" id="loanNo" maxlength="20" required placeholder="Loan Number"><br>
             
-            <label for="victim" id="victim-label">Are you a victim?</label>
             <select name="victim" id="victim" required>
                 <option value="">Are you a victim?</option>
                 <option value="Yes">Yes</option>

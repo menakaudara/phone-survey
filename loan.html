@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V13",
+            title: "Loan Application V1",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -243,6 +243,7 @@
             grecaptcha.ready(function () {
             grecaptcha.execute("6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO", { action: "submit" })
                 .then(function (token) {
+                    console.log("reCAPTCHA Token:", token);
                     if (!token) {
                         alert("reCAPTCHA failed. Please refresh and try again.");
                         resetSubmitButton();
@@ -284,6 +285,8 @@
             });
 
             alert(response.json());
+
+            console.log("Form data:", formData); 
         }
 
         function resetSubmitButton() {

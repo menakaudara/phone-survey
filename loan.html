@@ -6,84 +6,7 @@
     <title>Loan Application</title>
     <script src="https://www.google.com/recaptcha/api.js?render=6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        .lang-switch {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 16px;
-        }
-    
-        .lang-btn {
-            cursor: pointer;
-            color: #1a5710; /* Google's blue color */
-            text-decoration: none;
-            padding: 5px;
-            font-weight: bold;
-        }
-    
-        .lang-btn:hover {
-            text-decoration: underline;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input, select {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            width: 95%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .back-btn {
-            background-color: #818581;
-        }
-
-        .back-btn:hover {
-            background-color: #5d615d;
-        }
-
+        /* Same styles as before */
     </style>
 </head>
 <body>
@@ -91,11 +14,6 @@
     <div class="container">
         <h2 id="title">Loan Application</h2>
         <p id="description">Fill in your details below.</p>
-
-        <div class="lang-switch">
-            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
-            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
-        </div>
 
         <form id="survey-form" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST">
             <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>

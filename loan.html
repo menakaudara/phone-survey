@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V4",
+            title: "Loan Application V6",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -305,8 +305,9 @@
 
 
         function submitForm(recaptchaToken) {
-            const formData = new FormData(document.getElementById("survey-form"));
-            
+            const formElement = document.getElementById("survey-form");
+            const formData = new FormData(formElement);
+
             // Append reCAPTCHA token to FormData
         formData.append("recaptcha_response", recaptchaToken);
 

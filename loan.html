@@ -89,7 +89,7 @@
 <body>
 
     <div class="container">
-        <h2 id="title">Loan Application V3</h2>
+        <h2 id="title">Loan Application V4</h2>
         <p id="description">Fill in your details below.</p>
 
         <div class="lang-switch">
@@ -234,14 +234,14 @@
         setLanguage(savedLang);
 
             // reCAPTCHA execution
-            grecaptcha.ready(function() {
-                grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
-                    document.getElementById("recaptchaResponse").value = token;
-                });
+        grecaptcha.ready(function () {
+            grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function (token) {
+                document.getElementById("recaptchaResponse").value = token; // Save the token
             });
         });
 
-document.getElementById("survey-form").addEventListener("submit", function (event) {
+        // Add an event listener to handle form submission
+        document.getElementById("survey-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
             // Show a loading message while submitting
@@ -251,10 +251,19 @@ document.getElementById("survey-form").addEventListener("submit", function (even
 
             // Prepare form data
             const formData = new FormData(document.getElementById("survey-form"));
-            formData.append("recaptcha_response", document.getElementById("recaptchaResponse").value);
+            const recaptchaToken = document.getElementById("recaptchaResponse").value; // Get the reCAPTCHA token
+            if (!recaptchaToken) {
+                alert("reCAPTCHA verification failed. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Submit";
+                return;
+            }
+
+            // Add reCAPTCHA token to the form data
+            formData.append("recaptcha_response", recaptchaToken);
 
             // Submit the form using Fetch API
-            fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
+            fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
                 method: "POST",
                 body: formData,
             })
@@ -279,9 +288,8 @@ document.getElementById("survey-form").addEventListener("submit", function (even
                 submitBtn.disabled = false;
                 submitBtn.innerText = "Submit";
             });
+            });
         });
-    });
-
         
     </script>
 

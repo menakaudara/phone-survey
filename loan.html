@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Application</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
         .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
@@ -15,6 +15,7 @@
         .back-btn { background-color: #007BFF; }
         .back-btn:hover { background-color: #0056b3; }
         .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; display: inline-block; }
+        #success-message { display: none; color: green; font-weight: bold; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -27,7 +28,7 @@
             <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
         </div>
 
-        <form id="loan-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">
+        <form id="loan-form">
             <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required><br>
             <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required><br>
             <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required><br>
@@ -65,6 +66,8 @@
             <button type="submit" id="submitBtn">Submit</button>
             <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
         </form>
+
+        <p id="success-message">✅ Your loan details have been submitted successfully! Redirecting...</p>
     </div>
 
     <script>
@@ -81,7 +84,8 @@
                 "loanNo": "Loan Number",
                 "victim": "Are you a victim?",
                 "remarks": "Remarks",
-                "back-btn": "Back to Home"
+                "back-btn": "Back to Home",
+                "success-message": "✅ Your loan details have been submitted successfully! Redirecting..."
             },
             si: {
                 "loan-title": "ණය අයදුම්පත",
@@ -95,11 +99,13 @@
                 "loanNo": "ණය අංකය",
                 "victim": "ඔබට හානි වියද?",
                 "remarks": "සටහන්",
-                "back-btn": "මුල් පිටුවට"
+                "back-btn": "මුල් පිටුවට",
+                "success-message": "✅ ඔබගේ දත්ත සාර්ථකව ඉදිරිපත් විය! නැවත යොමුවෙමින්..."
             }
         };
 
         function setLanguage(lang) {
+            localStorage.setItem("preferredLanguage", lang);
             Object.keys(translations[lang]).forEach(id => {
                 if (document.getElementById(id)) {
                     document.getElementById(id).innerText = translations[lang][id];
@@ -108,9 +114,32 @@
             });
         }
 
-        grecaptcha.ready(function() {
-            grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
-                document.getElementById("recaptchaResponse").value = token;
+        function loadLanguage() {
+            const savedLang = localStorage.getItem("preferredLanguage") || "en";
+            setLanguage(savedLang);
+        }
+
+        window.onload = loadLanguage;
+
+        document.getElementById("loan-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
+                    document.getElementById("recaptchaResponse").value = token;
+                    
+                    // Submit the form using AJAX
+                    const formData = new FormData(document.getElementById("loan-form"));
+                    fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("success-message").style.display = "block";
+                        setTimeout(() => { window.location.href = "index.html"; }, 3000); // Redirect after 3 seconds
+                    })
+                    .catch(error => alert("Error submitting form. Please try again."));
+                });
             });
         });
     </script>

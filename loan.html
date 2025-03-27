@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Application Form</title>
+  <title>Loan Application Form V1</title>
   
-  <!-- Include Google reCAPTCHA script -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Include Google reCAPTCHA v3 script -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></script> <!-- Replace with your site key -->
 
   <script>
     // JavaScript to handle form submission
     function onSubmit() {
-      var response = grecaptcha.getResponse(); // Get reCAPTCHA response
+      grecaptcha.ready(function() {
+        grecaptcha.execute('6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO', {action: 'submit'}).then(function(token) {
+          // Add the reCAPTCHA token to the form as a hidden input
+          document.getElementById("recaptcha_response").value = token;
+          document.getElementById("loanForm").submit();  // Submit the form after setting the token
+        });
+      });
 
-      // Check if reCAPTCHA is verified
-      if (response.length === 0) {
-        alert("Please verify that you are human.");
-        return false;  // Prevent form submission
-      }
-
-      // Set the hidden field with reCAPTCHA response
-      document.getElementById("recaptcha_response").value = response;
-      return true;  // Allow form submission
+      // Prevent the form from submitting until the reCAPTCHA token is added
+      return false;
     }
   </script>
 </head>
@@ -57,10 +56,7 @@
     <label for="remarks">Remarks:</label>
     <input type="text" name="remarks" required><br>
 
-    <!-- reCAPTCHA -->
-    <div class="g-recaptcha" data-sitekey="6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></div> <!-- Replace with your site key -->
-
-    <!-- Hidden input field to hold reCAPTCHA response -->
+    <!-- Hidden input field to hold reCAPTCHA response token -->
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">
 
     <button type="submit">Submit</button>

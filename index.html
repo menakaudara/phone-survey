@@ -11,12 +11,30 @@
         .btn:hover { background-color: #0056b3; }
         h2 { border-bottom: 2px solid #007BFF; padding-bottom: 5px; }
         .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; }
+        .lang-switch {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+        }
+    
+        .lang-btn {
+            cursor: pointer;
+            color: #1a5710; /* Google's blue color */
+            text-decoration: none;
+            padding: 5px;
+            font-weight: bold;
+        }
+    
+        .lang-btn:hover {
+            text-decoration: underline;
+        }
+        
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="title">My Portfolio</h1>
-        <div>
+        <div class="lang-switch">
             <span class="lang-btn" data-lang="en">English</span> |
             <span class="lang-btn" data-lang="si">සිංහල</span>
         </div>

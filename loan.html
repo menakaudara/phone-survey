@@ -84,9 +84,9 @@
             background-color: #5d615d;
         }
 
----------------
 
-        // Define translations for the language options
+        <script>
+    // Define translations for the language options
     const translations = {
         en: {
             district: {
@@ -132,7 +132,43 @@
         }
     };
 
-        
+    // Function to update the options based on the selected language
+    function updateOptions(lang) {
+        const districtSelect = document.getElementById("district");
+        const loanSchemeSelect = document.getElementById("loanScheme");
+        const victimSelect = document.getElementById("victim");
+
+        // Update District options
+        for (let option of districtSelect.options) {
+            option.text = translations[lang].district[option.value] || option.text;
+        }
+
+        // Update Loan Scheme options
+        for (let option of loanSchemeSelect.options) {
+            option.text = translations[lang].loanScheme[option.value] || option.text;
+        }
+
+        // Update Victim options
+        for (let option of victimSelect.options) {
+            option.text = translations[lang].victim[option.value] || option.text;
+        }
+    }
+
+    // Set language based on the stored language or default to English
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedLang = localStorage.getItem("selectedLanguage") || "en";
+        updateOptions(savedLang);
+
+        // Store language in localStorage for session consistency
+        document.querySelectorAll('.lang-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const lang = this.getAttribute('data-lang');
+                localStorage.setItem("selectedLanguage", lang);
+                updateOptions(lang);
+            });
+        });
+    });
+                
     </style>
 </head>
 <body>

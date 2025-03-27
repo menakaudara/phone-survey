@@ -264,6 +264,16 @@
 
         function submitForm() {
             const formData = new FormData(document.getElementById("survey-form"));
+            
+            // Append reCAPTCHA token to FormData
+        formData.append("recaptcha_response", recaptchaToken);
+
+        console.log("Submitting form with data:");
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+            
             fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
                 method: "POST",
                 body: formData,

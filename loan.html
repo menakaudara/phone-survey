@@ -21,7 +21,7 @@
 <body>
 
     <div class="container">
-        <h2 id="loan-title">Loan Application V3</h2>
+        <h2 id="loan-title">Loan Application V4</h2>
         
         <div>
             <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
@@ -78,11 +78,8 @@
                 "name": "Your Name",
                 "nic": "NIC Number",
                 "address": "Address",
-                "district-label": "Select District",
                 "bankBranch": "Bank Branch",
-                "loanScheme-label": "Select Loan Scheme",
                 "loanNo": "Loan Number",
-                "victim-label": "Are you a victim?",
                 "remarks": "Remarks",
                 "success-message": "✅ Your loan details have been submitted successfully! Redirecting..."
             },
@@ -92,11 +89,8 @@
                 "name": "ඔබගේ නම",
                 "nic": "ජාතික හැඳුනුම්පත",
                 "address": "ලිපිනය",
-                "district-label": "දිස්ත්‍රික්කය තෝරන්න",
                 "bankBranch": "බැංකු ශාඛාව",
-                "loanScheme-label": "ණය යෝජනා ක්‍රමය තෝරන්න",
                 "loanNo": "ණය අංකය",
-                "victim-label": "ඔබට හානි වියද?",
                 "remarks": "සටහන්",
                 "success-message": "✅ ඔබගේ දත්ත සාර්ථකව ඉදිරිපත් විය! නැවත යොමුවෙමින්..."
             }
@@ -110,9 +104,6 @@
         function applyLanguage(lang) {
             document.getElementById("loan-title").innerText = translations[lang]["loan-title"];
             document.getElementById("submitBtn").innerText = translations[lang]["submitBtn"];
-            document.getElementById("district-label").innerText = translations[lang]["district-label"];
-            document.getElementById("loanScheme-label").innerText = translations[lang]["loanScheme-label"];
-            document.getElementById("victim-label").innerText = translations[lang]["victim-label"];
             document.getElementById("success-message").innerText = translations[lang]["success-message"];
 
             document.getElementById("district").options[0].text = translations[lang]["district-label"];

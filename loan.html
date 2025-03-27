@@ -1,368 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Application</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Application Form</title>
+  
+  <!-- Include Google reCAPTCHA script -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+  <script>
+    // JavaScript to handle form submission
+    function onSubmit() {
+      var response = grecaptcha.getResponse(); // Get reCAPTCHA response
 
-        h2 {
-            color: #333;
-        }
+      // Check if reCAPTCHA is verified
+      if (response.length === 0) {
+        alert("Please verify that you are human.");
+        return false;  // Prevent form submission
+      }
 
-        .lang-switch {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 16px;
-        }
-    
-        .lang-btn {
-            cursor: pointer;
-            color: #1a5710; /* Google's blue color */
-            text-decoration: none;
-            padding: 5px;
-            font-weight: bold;
-        }
-    
-        .lang-btn:hover {
-            text-decoration: underline;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input, select {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            width: 95%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .back-btn {
-            background-color: #818581;
-        }
-
-        .back-btn:hover {
-            background-color: #5d615d;
-        }
-
-    </style>
+      // Set the hidden field with reCAPTCHA response
+      document.getElementById("recaptcha_response").value = response;
+      return true;  // Allow form submission
+    }
+  </script>
 </head>
 <body>
 
-    <div class="container">
-        <h2 id="title">Loan Application</h2>
-        <p id="description">Fill in your details below.</p>
+  <h1>Loan Application Form</h1>
+  <form id="loanForm" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" onsubmit="return onSubmit()">
+    <!-- Other form fields -->
+    <label for="name">Name:</label>
+    <input type="text" name="name" required><br>
 
-        <div class="lang-switch">
-            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
-            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
-        </div>
+    <label for="nic">NIC:</label>
+    <input type="text" name="nic" required><br>
 
-        <form id="survey-form" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST">
-            <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
-            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
-            <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
+    <label for="address">Address:</label>
+    <input type="text" name="address" required><br>
 
-            <select name="district" id="district" required>
-                <option value="">Select District</option>
-                <option value="Colombo">Colombo</option>
-                <option value="Gampaha">Gampaha</option>
-                <option value="Galle">Galle</option>
-                <option value="Matara">Matara</option>
-            </select>
+    <label for="district">District:</label>
+    <input type="text" name="district" required><br>
 
-            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
+    <label for="bankBranch">Bank Branch:</label>
+    <input type="text" name="bankBranch" required><br>
 
-            <select name="loanScheme" id="loanScheme" required>
-                <option value="">Select Loan Scheme</option>
-                <option value="Scheme1">Scheme 1</option>
-                <option value="Scheme2">Scheme 2</option>
-                <option value="Scheme3">Scheme 3</option>
-                <option value="Scheme4">Scheme 4</option>
-            </select>
+    <label for="loanScheme">Loan Scheme:</label>
+    <input type="text" name="loanScheme" required><br>
 
-            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
+    <label for="loanNo">Loan Number:</label>
+    <input type="text" name="loanNo" required><br>
 
-            <select name="victim" id="victim" required>
-                <option value="">Are you a victim?</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
+    <label for="victim">Victim:</label>
+    <input type="text" name="victim" required><br>
 
-            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
+    <label for="remarks">Remarks:</label>
+    <input type="text" name="remarks" required><br>
 
-            <input type="hidden" name="recaptcha_response" id="recaptcha_response">
+    <!-- reCAPTCHA -->
+    <div class="g-recaptcha" data-sitekey="6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></div> <!-- Replace with your site key -->
 
-            <button type="submit">Submit</button>
-            <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
-        </form>
-    </div>
+    <!-- Hidden input field to hold reCAPTCHA response -->
+    <input type="hidden" name="recaptcha_response" id="recaptcha_response">
 
-<script>
-    const translations = {
-        en: {
-            title: "Loan Application V3",
-            description: "Fill in your details below.",
-            submitBtn: "Submit",
-            name: "Your Name",
-            nic: "NIC Number",
-            address: "Address",
-            district: {
-                    "": "Select District",
-                    "Colombo": "Colombo",
-                    "Gampaha": "Gampaha",
-                    "Kalutara": "Kalutara",
-                    "Kandy": "Kandy",
-                    "Matale": "Matale",
-                    "Nuwara Eliya": "Nuwara Eliya",
-                    "Galle": "Galle",
-                    "Matara": "Matara",
-                    "Hambantota": "Hambantota",
-                    "Jaffna": "Jaffna",
-                    "Kilinochchi": "Kilinochchi",
-                    "Mannar": "Mannar",
-                    "Vavuniya": "Vavuniya",
-                    "Mullaitivu": "Mullaitivu",
-                    "Batticaloa": "Batticaloa",
-                    "Ampara": "Ampara",
-                    "Trincomalee": "Trincomalee",
-                    "Kurunegala": "Kurunegala",
-                    "Puttalam": "Puttalam",
-                    "Anuradhapura": "Anuradhapura",
-                    "Polonnaruwa": "Polonnaruwa",
-                    "Badulla": "Badulla",
-                    "Monaragala": "Monaragala",
-                    "Ratnapura": "Ratnapura",
-                    "Kegalle": "Kegalle"
-            },
-            bankBranch: "Bank Branch",
-            loanScheme: {
-                "": "Select Loan Scheme",
-                "Ranaviru": "Ranaviru Loan Scheme",
-                "Government": "Government Loan Scheme",
-                "SME": "SME Loan Scheme",
-                "Pension": "Pension Loan Scheme"
-            },
-            loanNo: "Loan Number",
-            victim: {
-                "": "Are you a victim?",
-                "Yes": "Yes",
-                "No": "No"
-            },
-            remarks: "Remarks"
-        },
-        si: {
-            title: "ණය අයදුම්පත",
-            description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
-            submitBtn: "ඉදිරිපත් කරන්න",
-            name: "ඔබගේ නම",
-            nic: "ජාතික හැඳුනුම්පත",
-            address: "ලිපිනය",
-            district: {
-                "": "දිස්ත්‍රික්කය තෝරන්න",
-                "Colombo": "කොළඹ",
-                "Gampaha": "ගම්පහ",
-                "Kalutara": "කළුතර",
-                "Kandy": "මහනුවර",
-                "Matale": "මාතලේ",
-                "Nuwara Eliya": "නුවර එළිය",
-                "Galle": "ගාල්ල",
-                "Matara": "මාතර",
-                "Hambantota": "හම්බන්තොට",
-                "Jaffna": "යාපනය",
-                "Kilinochchi": "කිලිනොච්චිය",
-                "Mannar": "මන්නාරම",
-                "Vavuniya": "වව්නියාව",
-                "Mullaitivu": "මුලතිව්",
-                "Batticaloa": "මඩකළපුව",
-                "Ampara": "අම්පාර",
-                "Trincomalee": "ත්‍රිකුණාමලය",
-                "Kurunegala": "කුරුණෑගල",
-                "Puttalam": "පුත්තලම",
-                "Anuradhapura": "අනුරාධපුර",
-                "Polonnaruwa": "පොළොන්නරුව",
-                "Badulla": "බදුල්ල",
-                "Monaragala": "මොණරාගල",
-                "Ratnapura": "රත්නපුර",
-                "Kegalle": "කෑගල්ල"
-            },
-            bankBranch: "බැංකු ශාඛාව",
-            loanScheme: {
-                "": "ණය යෝජනා ක්‍රමය තෝරන්න",
-                "Ranaviru": "රණවිරු ණය නියෝජනා ක්‍රමය",
-                "Government": "රාජ්‍ය සේවක ණය නියෝජනා ක්‍රමය",
-                "SME": "ව්‍යවසාය ණය නියෝජනා ක්‍රමය",
-                "Pension": "විශ්‍රාමික ණය නියෝජනා ක්‍රමය"
-            },
-            loanNo: "ණය අංකය",
-            victim: {
-                "": "ඔබ පිඩාවට ලක්වූවෙක්ද?",
-                "Yes": "ඔව්",
-                "No": "නැත"
-            },
-            remarks: "වෙනත් සටහන්"
-        }
-    };
-
-    function setLanguage(lang) {
-        localStorage.setItem("selectedLanguage", lang); // Store correct key
-        document.getElementById("title").innerText = translations[lang].title;
-        document.getElementById("description").innerText = translations[lang].description;
-        document.getElementById("name").placeholder = translations[lang].name;
-        document.getElementById("nic").placeholder = translations[lang].nic;
-        document.getElementById("address").placeholder = translations[lang].address;
-        document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
-        document.getElementById("loanNo").placeholder = translations[lang].loanNo;
-        document.getElementById("remarks").placeholder = translations[lang].remarks;
-
-        updateSelectOptions('district', translations[lang].district);
-        updateSelectOptions('loanScheme', translations[lang].loanScheme);
-        updateSelectOptions('victim', translations[lang].victim);
-    }
-
-    function updateSelectOptions(selectId, options) {
-        const select = document.getElementById(selectId);
-        select.innerHTML = ""; // Clear existing options
-        for (let key in options) {
-            let option = document.createElement("option");
-            option.value = key;
-            option.text = options[key];
-            select.appendChild(option);
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const savedLang = localStorage.getItem("selectedLanguage") || "en";
-        setLanguage(savedLang);
-
-        // Add event listener to form
-        document.getElementById("survey-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const submitBtn = document.querySelector("button[type='submit']");
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Submitting...";
-
-            grecaptcha.ready(function () {
-            grecaptcha.execute("6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO", { action: "submit" })
-                .then(function (token) {
-                    console.log("reCAPTCHA Token:", token);
-                    if (!token) {
-                        alert("reCAPTCHA failed. Please refresh and try again.");
-                        resetSubmitButton();
-                        return;
-                    }
-                    alert("Recaptcha Token : "+token);
-                    document.getElementById("recaptcha_response").value = token;
-                    submitForm(token); // Call function to send form data
-                })
-                .catch(error => {
-                    console.error("reCAPTCHA error:", error);
-                    alert("reCAPTCHA failed. Please refresh and try again.");
-                    resetSubmitButton();
-                });
-        });
-    });
-
-
-        function submitForm(recaptchaToken) {
-            const formElement = document.getElementById("survey-form");
-            const formData = new FormData(formElement);
-
-            const dataObject = {};
-            formData.forEach((value, key) => {
-              dataObject[key] = value;
-            });
-
-
-            const recaptchaResponse = formData.get('recaptcha_response');
-            console.log("reCAPTCHA Response: " + recaptchaResponse); // Check the reCAPTCHA response value
-            alert("reCAPTCHA Response: " + recaptchaResponse);
-            alert(JSON.stringify(dataObject)); // Alerts the form data as a JSON string
-            // Append reCAPTCHA token to FormData
-        formData.append("recaptcha_response", recaptchaToken);
-
-        console.log("Submitting form with data:");
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
-
-            
-            fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
-                method: "POST",
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                 console.log("Server Response:", data);
-                if (data.success) {
-                    alert("Form submitted successfully!");
-                    window.location.href = "index.html";
-                } else {
-                    alert("Error submitting form: " + (data.error || "Please try again."));
-                    resetSubmitButton();
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-                alert("There was an error submitting the form. Please try again.");
-                resetSubmitButton();
-            });
-
-            console.log("Form data:", formData);
-for (let [key, value] of formData.entries()) {
-    console.log(`${key}: ${value}`);
-}
-
-            
-        }
-
-        function resetSubmitButton() {
-            const submitBtn = document.querySelector("button[type='submit']");
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Submit";
-        }
-    });
-</script>
+    <button type="submit">Submit</button>
+  </form>
 
 </body>
 </html>

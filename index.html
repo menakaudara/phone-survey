@@ -137,6 +137,20 @@
             const savedLang = localStorage.getItem("selectedLanguage") || "en";
             setLanguage(savedLang);
         });
+
+function setLanguage(lang) {
+        localStorage.setItem("selectedLanguage", lang);
+        Object.keys(translations[lang]).forEach(id => {
+            document.getElementById(id).innerText = translations[lang][id];
+        });
+    }
+
+    // Apply the stored language preference on page load
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedLang = localStorage.getItem("selectedLanguage") || "en";
+        setLanguage(savedLang);
+    });
+        
     </script>
 </body>
 </html>

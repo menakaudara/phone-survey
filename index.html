@@ -5,21 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        .container { max-width: 800px; margin: auto; }
-        .btn { display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
-        .btn:hover { background-color: #0056b3; }
-        h2 { border-bottom: 2px solid #007BFF; padding-bottom: 5px; }
-        .lang-btn { cursor: pointer; color: blue; text-decoration: underline; margin: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
         .lang-switch {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 16px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
     
         .lang-btn {
             cursor: pointer;
-            color: #1a5710; /* Google's blue color */
+            color: #1a5710;
             text-decoration: none;
             padding: 5px;
             font-weight: bold;
@@ -28,7 +43,30 @@
         .lang-btn:hover {
             text-decoration: underline;
         }
-        
+    
+        button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #818581;
+        }
+
+        .back-btn:hover {
+            background-color: #5d615d;
+        }
     </style>
 </head>
 <body>
@@ -50,11 +88,10 @@
         <p id="project-2">📌 Project title 2</p>
         <p id="project-3">📌 Project title 3</p>
 
-        <a href="loan.html" id="loan-btn" class="btn">Submit Loan Details</a>
+        <button onclick="window.location.href='loan.html'">Submit Loan Details</button>
     </div>
 
     <script>
-        // Define translations for both languages
         const translations = {
             en: {
                 title: "Government Unity Organization",
@@ -62,35 +99,26 @@
                 "about-text": "An association formed by public servants, private employees, war heroes, and entrepreneurs. Our primary objective is to find solutions to the problems that commonly arise among us.",
                 "exp-title": "Ongoing projects",
                 "exp-1": "✔ Finding solution for the SDB Bank loan interest rates issue",
-                //"exp-2": "✔ Noteworthy achievement here.",
-                //"exp-3": "✔ Noteworthy achievement here.",
                 "projects-title": "Our Mission",
                 "project-1": "📌 Project title 1",
                 "project-2": "📌 Project title 2",
-                "project-3": "📌 Project title 3",
-                "loan-btn": "Submit Loan Details"
+                "project-3": "📌 Project title 3"
             },
             si: {
                 title: "රාජ්‍ය එකමුතුව සංවිධානය",
                 "about-title": "අප පිළිබඳ විස්තර",
-                "about-text": "රාජ්‍ය සේවකයින්, පෞද්ගලික සේවකයින්, රණවිරුවන්,  ව්‍යවසායකයින් එක්ව සෑදුණු සංගමයකි.පොදුවේ අපහට ඇතිවන ගැටලු සඳහා පිළියම් සෙවීම අපගේ මූලික අරමුණයි.",
+                "about-text": "රාජ්‍ය සේවකයින්, පෞද්ගලික සේවකයින්, රණවිරුවන්, ව්‍යවසායකයින් එක්ව සෑදුණු සංගමයකි. පොදුවේ අපහට ඇතිවන ගැටලු සඳහා පිළියම් සෙවීම අපගේ මූලික අරමුණයි.",
                 "exp-title": "දැනට ක්‍රියාත්මක ව්‍යාපෘති",
-                "exp-1": "✔ SDB බැංකු ණය පොලී අනුපාත සම්බන්ධයෙන් ගැටළුවට පිළියම් සෙවීමේ.",
-                //"exp-2": "✔ සැලකිය යුතු ජයග්‍රහණයක් මෙහි.",
-                //"exp-3": "✔ සැලකිය යුතු ජයග්‍රහණයක් මෙහි.",
+                "exp-1": "✔ SDB බැංකු ණය පොලී අනුපාත සම්බන්ධයෙන් ගැටළුවට පිළියම් සෙවීම.",
                 "projects-title": "අපගේ මෙහෙවර",
                 "project-1": "📌 ව්‍යාපෘතිය 1",
                 "project-2": "📌 ව්‍යාපෘතිය 2",
-                "project-3": "📌 ව්‍යාපෘතිය 3",
-                "loan-btn": "ණය විස්තර යොමු කරන්න"
+                "project-3": "📌 ව්‍යාපෘතිය 3"
             }
         };
 
-        // Function to update language
         function setLanguage(lang) {
-            localStorage.setItem("selectedLanguage", lang);  // Store language in localStorage
-
-            // Update text on page according to the selected language
+            localStorage.setItem("selectedLanguage", lang);
             Object.keys(translations[lang]).forEach(id => {
                 const element = document.getElementById(id);
                 if (element) {
@@ -99,12 +127,10 @@
             });
         }
 
-        // Load saved language preference or default to English
         document.addEventListener("DOMContentLoaded", function () {
             const savedLang = localStorage.getItem("selectedLanguage") || "en";
             setLanguage(savedLang);
 
-            // Add event listeners for the language buttons
             document.querySelectorAll('.lang-btn').forEach(button => {
                 button.addEventListener('click', function () {
                     const lang = this.getAttribute('data-lang');

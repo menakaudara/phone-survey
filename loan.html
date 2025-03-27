@@ -84,91 +84,6 @@
             background-color: #5d615d;
         }
 
-
-        <script>
-
-    const translations = {
-        en: {
-            district: {
-                "": "Select District",
-                "Colombo": "Colombo",
-                "Gampaha": "Gampaha",
-                "Galle": "Galle",
-                "Matara": "Matara"
-            },
-            loanScheme: {
-                "": "Select Loan Scheme",
-                "Scheme1": "Scheme 1",
-                "Scheme2": "Scheme 2",
-                "Scheme3": "Scheme 3",
-                "Scheme4": "Scheme 4"
-            },
-            victim: {
-                "": "Are you a victim?",
-                "Yes": "Yes",
-                "No": "No"
-            }
-        },
-        si: {
-            district: {
-                "": "දිස්ත්‍රික්කය තෝරන්න",
-                "Colombo": "කොළඹ",
-                "Gampaha": "ගම්පහ",
-                "Galle": "ගාල්ල",
-                "Matara": "මාතර"
-            },
-            loanScheme: {
-                "": "ණය ක්‍රමය තෝරන්න",
-                "Scheme1": "කේතය 1",
-                "Scheme2": "කේතය 2",
-                "Scheme3": "කේතය 3",
-                "Scheme4": "කේතය 4"
-            },
-            victim: {
-                "": "ඔබ පිඩාවට ලක්වුණාද?",
-                "Yes": "ඔව්",
-                "No": "නැත"
-            }
-        }
-    };
-
-    // Function to update the options based on the selected language
-    function updateOptions(lang) {
-        const districtSelect = document.getElementById("district");
-        const loanSchemeSelect = document.getElementById("loanScheme");
-        const victimSelect = document.getElementById("victim");
-
-        // Update District options
-        for (let option of districtSelect.options) {
-            option.text = translations[lang].district[option.value] || option.text;
-        }
-
-        // Update Loan Scheme options
-        for (let option of loanSchemeSelect.options) {
-            option.text = translations[lang].loanScheme[option.value] || option.text;
-        }
-
-        // Update Victim options
-        for (let option of victimSelect.options) {
-            option.text = translations[lang].victim[option.value] || option.text;
-        }
-    }
-
-    // Set language based on the stored language or default to English
-    document.addEventListener("DOMContentLoaded", function () {
-        const savedLang = localStorage.getItem("selectedLanguage") || "en";
-        updateOptions(savedLang);
-
-        // Store language in localStorage for session consistency
-        document.querySelectorAll('.lang-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                const lang = this.getAttribute('data-lang');
-                localStorage.setItem("selectedLanguage", lang);
-                updateOptions(lang);
-            });
-        });
-    });
-                
     </style>
 </head>
 <body>
@@ -177,13 +92,12 @@
         <h2 id="title">Loan Application</h2>
         <p id="description">Fill in your details below.</p>
 
-        <!--
         <div class="lang-switch">
             <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
             <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
         </div>
--->
-        <form id="survey-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">
+
+        <form id="survey-form" action="https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec" method="POST">
             <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
             <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
             <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
@@ -232,11 +146,27 @@
                 name: "Your Name",
                 nic: "NIC Number",
                 address: "Address",
-                district: "Select District",
+                district: {
+                    "": "Select District",
+                    "Colombo": "Colombo",
+                    "Gampaha": "Gampaha",
+                    "Galle": "Galle",
+                    "Matara": "Matara"
+                },
                 bankBranch: "Bank Branch",
-                loanScheme: "Select Loan Scheme",
+                loanScheme: {
+                    "": "Select Loan Scheme",
+                    "Scheme1": "Scheme 1",
+                    "Scheme2": "Scheme 2",
+                    "Scheme3": "Scheme 3",
+                    "Scheme4": "Scheme 4"
+                },
                 loanNo: "Loan Number",
-                victim: "Are you a victim?",
+                victim: {
+                    "": "Are you a victim?",
+                    "Yes": "Yes",
+                    "No": "No"
+                },
                 remarks: "Remarks"
             },
             si: {
@@ -246,11 +176,27 @@
                 name: "ඔබගේ නම",
                 nic: "ජාතික හැඳුනුම්පත",
                 address: "ලිපිනය",
-                district: "දිස්ත්‍රික්කය තෝරන්න",
+                district: {
+                    "": "දිස්ත්‍රික්කය තෝරන්න",
+                    "Colombo": "කොළඹ",
+                    "Gampaha": "ගම්පහ",
+                    "Galle": "ගාල්ල",
+                    "Matara": "මාතර"
+                },
                 bankBranch: "බැංකු ශාඛාව",
-                loanScheme: "ණය යෝජනා ක්‍රමය තෝරන්න",
+                loanScheme: {
+                    "": "ණය යෝජනා ක්‍රමය තෝරන්න",
+                    "Scheme1": "කේතය 1",
+                    "Scheme2": "කේතය 2",
+                    "Scheme3": "කේතය 3",
+                    "Scheme4": "කේතය 4"
+                },
                 loanNo: "ණය අංකය",
-                victim: "ඔබට හානි වියද?",
+                victim: {
+                    "": "ඔබ පිඩාවට ලක්වුණාද?",
+                    "Yes": "ඔව්",
+                    "No": "නැත"
+                },
                 remarks: "සටහන්"
             }
         };
@@ -262,12 +208,27 @@
             document.getElementById("name").placeholder = translations[lang].name;
             document.getElementById("nic").placeholder = translations[lang].nic;
             document.getElementById("address").placeholder = translations[lang].address;
-            document.getElementById("district").options[0].text = translations[lang].district;
             document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
-            document.getElementById("loanScheme").options[0].text = translations[lang].loanScheme;
             document.getElementById("loanNo").placeholder = translations[lang].loanNo;
-            document.getElementById("victim").options[0].text = translations[lang].victim;
             document.getElementById("remarks").placeholder = translations[lang].remarks;
+
+            // Update District options
+            const districtSelect = document.getElementById("district");
+            for (let option of districtSelect.options) {
+                option.text = translations[lang].district[option.value] || option.text;
+            }
+
+            // Update Loan Scheme options
+            const loanSchemeSelect = document.getElementById("loanScheme");
+            for (let option of loanSchemeSelect.options) {
+                option.text = translations[lang].loanScheme[option.value] || option.text;
+            }
+
+            // Update Victim options
+            const victimSelect = document.getElementById("victim");
+            for (let option of victimSelect.options) {
+                option.text = translations[lang].victim[option.value] || option.text;
+            }
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -280,19 +241,7 @@
                     document.getElementById("recaptchaResponse").value = token;
                 });
             });
-
-            // Form submission success handling
-            document.getElementById("survey-form").addEventListener("submit", function(event) {
-                event.preventDefault();
-                alert("Form submitted successfully!");
-                window.location.href = "index.html";
-            });
         });
-
-         document.addEventListener("DOMContentLoaded", function () {
-        const savedLang = localStorage.getItem("selectedLanguage") || "en";
-        setLanguage(savedLang);
-    });
     </script>
 
 </body>

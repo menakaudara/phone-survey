@@ -1,7 +1,8 @@
 const translations = {
     en: {
-        title: "Loan Application",
-        description: "Fill in your details below.",
+        title: "Loan Application Survey",
+        description: "Welcome to the Loan Application Survey. Please choose an option below to get started.",
+        submitBtn: "Submit",
         name: "Your Name",
         nic: "NIC Number",
         address: "Address",
@@ -14,7 +15,8 @@ const translations = {
     },
     si: {
         title: "ණය අයදුම්පත",
-        description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
+        description: "ණය අයදුම්පත් සමීක්ෂණයට සාදරයෙන් පිළිගනිමු. කරුණාකර පහත දක්වා ඇතැයි තෝරන්න.",
+        submitBtn: "ඉදිරිපත් කරන්න",
         name: "ඔබගේ නම",
         nic: "ජාතික හැඳුනුම්පත",
         address: "ලිපිනය",
@@ -31,6 +33,7 @@ function setLanguage(lang) {
     localStorage.setItem("lang", lang); // Store selection in session
     document.getElementById("title").innerText = translations[lang].title;
     document.getElementById("description").innerText = translations[lang].description;
+    document.getElementById("submitBtn").innerText = translations[lang].submitBtn;
     document.getElementById("name").placeholder = translations[lang].name;
     document.getElementById("nic").placeholder = translations[lang].nic;
     document.getElementById("address").placeholder = translations[lang].address;
@@ -42,20 +45,14 @@ function setLanguage(lang) {
     document.getElementById("remarks").placeholder = translations[lang].remarks;
 }
 
-// Load saved language
 document.addEventListener("DOMContentLoaded", function () {
     const savedLang = localStorage.getItem("lang") || "en";
     setLanguage(savedLang);
-});
-
-// Google reCAPTCHA Integration
-document.getElementById("survey-form").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission until reCAPTCHA is verified
-
-    grecaptcha.ready(function () {
-        grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function (token) {
+    
+    // Add event listener for reCAPTCHA
+    grecaptcha.ready(function() {
+        grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function(token) {
             document.getElementById("recaptchaResponse").value = token;
-            document.getElementById("survey-form").submit(); // Submit form after getting reCAPTCHA token
         });
     });
 });

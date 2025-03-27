@@ -130,7 +130,7 @@
 
             <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
 
-            <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+            <input type="hidden" name="recaptcha_response" id="recaptcha_response">
 
             <button type="submit">Submit</button>
             <button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V2",
+            title: "Loan Application V3",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -292,7 +292,7 @@
                         return;
                     }
                     alert("Recaptcha Token : "+token);
-                    document.getElementById("recaptchaResponse").value = token;
+                    document.getElementById("recaptcha_response").value = token;
                     submitForm(token); // Call function to send form data
                 })
                 .catch(error => {

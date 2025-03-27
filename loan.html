@@ -89,7 +89,7 @@
 <body>
 
     <div class="container">
-        <h2 id="title">Loan Application V4</h2>
+        <h2 id="title">Loan Application V5</h2>
         <p id="description">Fill in your details below.</p>
 
         <div class="lang-switch">
@@ -137,161 +137,149 @@
         </form>
     </div>
 
-    <script>
-        const translations = {
-            en: {
-                title: "Loan Application",
-                description: "Fill in your details below.",
-                submitBtn: "Submit",
-                name: "Your Name",
-                nic: "NIC Number",
-                address: "Address",
-                district: {
-                    "": "Select District",
-                    "Colombo": "Colombo",
-                    "Gampaha": "Gampaha",
-                    "Galle": "Galle",
-                    "Matara": "Matara"
-                },
-                bankBranch: "Bank Branch",
-                loanScheme: {
-                    "": "Select Loan Scheme",
-                    "Scheme1": "Scheme 1",
-                    "Scheme2": "Scheme 2",
-                    "Scheme3": "Scheme 3",
-                    "Scheme4": "Scheme 4"
-                },
-                loanNo: "Loan Number",
-                victim: {
-                    "": "Are you a victim?",
-                    "Yes": "Yes",
-                    "No": "No"
-                },
-                remarks: "Remarks"
+<script>
+    const translations = {
+        en: {
+            title: "Loan Application",
+            description: "Fill in your details below.",
+            submitBtn: "Submit",
+            name: "Your Name",
+            nic: "NIC Number",
+            address: "Address",
+            district: {
+                "": "Select District",
+                "Colombo": "Colombo",
+                "Gampaha": "Gampaha",
+                "Galle": "Galle",
+                "Matara": "Matara"
             },
-            si: {
-                title: "ණය අයදුම්පත",
-                description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
-                submitBtn: "ඉදිරිපත් කරන්න",
-                name: "ඔබගේ නම",
-                nic: "ජාතික හැඳුනුම්පත",
-                address: "ලිපිනය",
-                district: {
-                    "": "දිස්ත්‍රික්කය තෝරන්න",
-                    "Colombo": "කොළඹ",
-                    "Gampaha": "ගම්පහ",
-                    "Galle": "ගාල්ල",
-                    "Matara": "මාතර"
-                },
-                bankBranch: "බැංකු ශාඛාව",
-                loanScheme: {
-                    "": "ණය යෝජනා ක්‍රමය තෝරන්න",
-                    "Scheme1": "කේතය 1",
-                    "Scheme2": "කේතය 2",
-                    "Scheme3": "කේතය 3",
-                    "Scheme4": "කේතය 4"
-                },
-                loanNo: "ණය අංකය",
-                victim: {
-                    "": "ඔබ පිඩාවට ලක්වුණාද?",
-                    "Yes": "ඔව්",
-                    "No": "නැත"
-                },
-                remarks: "සටහන්"
-            }
-        };
-
-        function setLanguage(lang) {
-            localStorage.setItem("lang", lang); // Store language preference
-            document.getElementById("title").innerText = translations[lang].title;
-            document.getElementById("description").innerText = translations[lang].description;
-            document.getElementById("name").placeholder = translations[lang].name;
-            document.getElementById("nic").placeholder = translations[lang].nic;
-            document.getElementById("address").placeholder = translations[lang].address;
-            document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
-            document.getElementById("loanNo").placeholder = translations[lang].loanNo;
-            document.getElementById("remarks").placeholder = translations[lang].remarks;
-
-            // Update District options
-            updateSelectOptions('district', translations[lang].district);
-
-            // Update Loan Scheme options
-            updateSelectOptions('loanScheme', translations[lang].loanScheme);
-
-            // Update Victim options
-            updateSelectOptions('victim', translations[lang].victim);
+            bankBranch: "Bank Branch",
+            loanScheme: {
+                "": "Select Loan Scheme",
+                "Scheme1": "Scheme 1",
+                "Scheme2": "Scheme 2",
+                "Scheme3": "Scheme 3",
+                "Scheme4": "Scheme 4"
+            },
+            loanNo: "Loan Number",
+            victim: {
+                "": "Are you a victim?",
+                "Yes": "Yes",
+                "No": "No"
+            },
+            remarks: "Remarks"
+        },
+        si: {
+            title: "ණය අයදුම්පත",
+            description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
+            submitBtn: "ඉදිරිපත් කරන්න",
+            name: "ඔබගේ නම",
+            nic: "ජාතික හැඳුනුම්පත",
+            address: "ලිපිනය",
+            district: {
+                "": "දිස්ත්‍රික්කය තෝරන්න",
+                "Colombo": "කොළඹ",
+                "Gampaha": "ගම්පහ",
+                "Galle": "ගාල්ල",
+                "Matara": "මාතර"
+            },
+            bankBranch: "බැංකු ශාඛාව",
+            loanScheme: {
+                "": "ණය යෝජනා ක්‍රමය තෝරන්න",
+                "Scheme1": "කේතය 1",
+                "Scheme2": "කේතය 2",
+                "Scheme3": "කේතය 3",
+                "Scheme4": "කේතය 4"
+            },
+            loanNo: "ණය අංකය",
+            victim: {
+                "": "ඔබ පිඩාවට ලක්වුණාද?",
+                "Yes": "ඔව්",
+                "No": "නැත"
+            },
+            remarks: "සටහන්"
         }
+    };
 
-        function updateSelectOptions(selectId, options) {
-            const select = document.getElementById(selectId);
-            for (let option of select.options) {
-                option.text = options[option.value] || option.text;
-            }
+    function setLanguage(lang) {
+        localStorage.setItem("selectedLanguage", lang); // Store correct key
+        document.getElementById("title").innerText = translations[lang].title;
+        document.getElementById("description").innerText = translations[lang].description;
+        document.getElementById("name").placeholder = translations[lang].name;
+        document.getElementById("nic").placeholder = translations[lang].nic;
+        document.getElementById("address").placeholder = translations[lang].address;
+        document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
+        document.getElementById("loanNo").placeholder = translations[lang].loanNo;
+        document.getElementById("remarks").placeholder = translations[lang].remarks;
+
+        updateSelectOptions('district', translations[lang].district);
+        updateSelectOptions('loanScheme', translations[lang].loanScheme);
+        updateSelectOptions('victim', translations[lang].victim);
+    }
+
+    function updateSelectOptions(selectId, options) {
+        const select = document.getElementById(selectId);
+        select.innerHTML = ""; // Clear existing options
+        for (let key in options) {
+            let option = document.createElement("option");
+            option.value = key;
+            option.text = options[key];
+            select.appendChild(option);
         }
+    }
 
-            document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
         const savedLang = localStorage.getItem("selectedLanguage") || "en";
         setLanguage(savedLang);
 
-            // reCAPTCHA execution
-        grecaptcha.ready(function () {
-            grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function (token) {
-                document.getElementById("recaptchaResponse").value = token; // Save the token
-            });
-        });
-
-        // Add an event listener to handle form submission
+        // Add event listener to form
         document.getElementById("survey-form").addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Show a loading message while submitting
             const submitBtn = document.querySelector("button[type='submit']");
             submitBtn.disabled = true;
             submitBtn.innerText = "Submitting...";
 
-            // Prepare form data
+            grecaptcha.ready(function () {
+                grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function (token) {
+                    document.getElementById("recaptchaResponse").value = token;
+
+                    // Now submit the form
+                    submitForm();
+                });
+            });
+        });
+
+        function submitForm() {
             const formData = new FormData(document.getElementById("survey-form"));
-            const recaptchaToken = document.getElementById("recaptchaResponse").value; // Get the reCAPTCHA token
-            if (!recaptchaToken) {
-                alert("reCAPTCHA verification failed. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit";
-                return;
-            }
-
-            // Add reCAPTCHA token to the form data
-            formData.append("recaptcha_response", recaptchaToken);
-
-            // Submit the form using Fetch API
             fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
                 method: "POST",
                 body: formData,
             })
-            .then(response => response.json()) // Assuming Apps Script returns a JSON response
+            .then(response => response.json())
             .then(data => {
-                // Handle success or error based on the response from the Apps Script
                 if (data.success) {
-                    // Display success message
                     alert("Form submitted successfully!");
-                    window.location.href = "index.html"; // Redirect to the home page
+                    window.location.href = "index.html";
                 } else {
-                    // Display error message
-                    alert("There was an error submitting the form. Please try again.");
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = "Submit";
+                    alert("Error submitting form: " + (data.error || "Please try again."));
+                    resetSubmitButton();
                 }
             })
             .catch(error => {
-                // Handle network or server error
-                console.error("Error submitting form:", error);
+                console.error("Error:", error);
                 alert("There was an error submitting the form. Please try again.");
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Submit";
+                resetSubmitButton();
             });
-            });
-        });
-        
-    </script>
+        }
+
+        function resetSubmitButton() {
+            const submitBtn = document.querySelector("button[type='submit']");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit";
+        }
+    });
+</script>
 
 </body>
 </html>

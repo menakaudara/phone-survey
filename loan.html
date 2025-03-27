@@ -28,19 +28,23 @@
         }
 
         .lang-switch {
-        display: flex;
-        justify-content: center;
+        text-align: center;
         margin-bottom: 15px;
-        }
-
-        #lang-select {
-        padding: 8px;
         font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background: white;
-        cursor: pointer;
-    }
+        }
+    
+        .lang-btn {
+            cursor: pointer;
+            color: #1a73e8; /* Google's blue color */
+            text-decoration: none;
+            padding: 5px;
+            font-weight: bold;
+        }
+    
+        .lang-btn:hover {
+            text-decoration: underline;
+        }
+        
         form {
             display: flex;
             flex-direction: column;
@@ -88,10 +92,8 @@
         <p id="description">Fill in your details below.</p>
 
         <div class="lang-switch">
-            <select id="lang-select" onchange="setLanguage(this.value)">
-                <option value="en">English</option>
-                <option value="si">සිංහල</option>
-            </select>
+            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
+            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
         </div>
 
         <form id="survey-form" action="https://phoneusagesurvey.zingobingo123.workers.dev" method="POST">

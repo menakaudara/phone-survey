@@ -254,7 +254,7 @@ document.getElementById("survey-form").addEventListener("submit", function (even
             formData.append("recaptcha_response", document.getElementById("recaptchaResponse").value);
 
             // Submit the form using Fetch API
-            fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+            fetch("https://phoneusagesurvey.zingobingo123.workers.dev", {
                 method: "POST",
                 body: formData,
             })

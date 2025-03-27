@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V3",
+            title: "Loan Application V4",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -293,7 +293,7 @@
                     }
 
                     document.getElementById("recaptchaResponse").value = token;
-                    submitForm(); // Call function to send form data
+                    submitForm(token); // Call function to send form data
                 })
                 .catch(error => {
                     console.error("reCAPTCHA error:", error);
@@ -304,7 +304,7 @@
     });
 
 
-        function submitForm() {
+        function submitForm(recaptchaToken) {
             const formData = new FormData(document.getElementById("survey-form"));
             
             // Append reCAPTCHA token to FormData
@@ -322,6 +322,7 @@
             })
             .then(response => response.json())
             .then(data => {
+                 console.log("Server Response:", data);
                 if (data.success) {
                     alert("Form submitted successfully!");
                     window.location.href = "index.html";

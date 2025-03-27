@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V9",
+            title: "Loan Application V10",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -312,7 +312,11 @@
             formData.forEach((value, key) => {
               dataObject[key] = value;
             });
-            
+
+
+            const recaptchaResponse = formData.get('recaptcha_response');
+            console.log("reCAPTCHA Response: " + recaptchaResponse); // Check the reCAPTCHA response value
+            alert("reCAPTCHA Response: " + recaptchaResponse);
             alert(JSON.stringify(dataObject)); // Alerts the form data as a JSON string
             // Append reCAPTCHA token to FormData
         formData.append("recaptcha_response", recaptchaToken);

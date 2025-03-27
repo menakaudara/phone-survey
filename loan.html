@@ -241,19 +241,25 @@
             submitBtn.innerText = "Submitting...";
 
             grecaptcha.ready(function () {
-                grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" }).then(function (token) {
-                    document.getElementById("recaptchaResponse").value = token;
+            grecaptcha.execute("6LfU4v8qAAAAAKKY3IjtE-uppX-oH_Ev_CMp0dKr", { action: "submit" })
+                .then(function (token) {
+                    if (!token) {
+                        alert("reCAPTCHA failed. Please refresh and try again.");
+                        resetSubmitButton();
+                        return;
+                    }
 
-                    // Now submit the form
-                    submitForm();
+                    document.getElementById("recaptchaResponse").value = token;
+                    submitForm(); // Call function to send form data
                 })
                 .catch(error => {
-                        console.error("reCAPTCHA execution failed:", error);
-                        alert("reCAPTCHA verification failed. Please try again.");
-                        resetSubmitButton();
-                    });   
-            });
+                    console.error("reCAPTCHA error:", error);
+                    alert("reCAPTCHA failed. Please refresh and try again.");
+                    resetSubmitButton();
+                });
         });
+    });
+
 
         function submitForm() {
             const formData = new FormData(document.getElementById("survey-form"));

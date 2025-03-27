@@ -89,7 +89,7 @@
 <body>
 
     <div class="container">
-        <h2 id="title">Loan Application V5</h2>
+        <h2 id="title">Loan Application</h2>
         <p id="description">Fill in your details below.</p>
 
         <div class="lang-switch">
@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application",
+            title: "Loan Application V7",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -246,7 +246,12 @@
 
                     // Now submit the form
                     submitForm();
-                });
+                })
+                .catch(error => {
+                        console.error("reCAPTCHA execution failed:", error);
+                        alert("reCAPTCHA verification failed. Please try again.");
+                        resetSubmitButton();
+                    });   
             });
         });
 

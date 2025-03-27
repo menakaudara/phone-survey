@@ -140,7 +140,7 @@
 <script>
     const translations = {
         en: {
-            title: "Loan Application V7",
+            title: "Loan Application V8",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -245,18 +245,18 @@
 
     function setLanguage(lang) {
         localStorage.setItem("selectedLanguage", lang); // Store correct key
-        document.getElementById("title").innerText = "AAAA";
-        document.getElementById("description").innerText = "AAAA";
-        document.getElementById("name").placeholder = "AAAA";
-        document.getElementById("nic").placeholder = "AAAA";
-        document.getElementById("address").placeholder = "AAAA";
-        document.getElementById("bankBranch").placeholder = "AAAA";
-        document.getElementById("loanNo").placeholder = "AAAA";
-        document.getElementById("remarks").placeholder = "AAAA";
+        document.getElementById("title").innerText = translations[lang].title;
+        document.getElementById("description").innerText = translations[lang].description;
+        document.getElementById("name").placeholder = translations[lang].name;
+        document.getElementById("nic").placeholder = translations[lang].nic;
+        document.getElementById("address").placeholder = translations[lang].address;
+        document.getElementById("bankBranch").placeholder = translations[lang].bankBranch;
+        document.getElementById("loanNo").placeholder = translations[lang].loanNo;
+        document.getElementById("remarks").placeholder = translations[lang].remarks;
 
-        updateSelectOptions('district', "AAAA");
-        updateSelectOptions('loanScheme', "AAAA");
-        updateSelectOptions('victim', "AAAA");
+        updateSelectOptions('district', translations[lang].district);
+        updateSelectOptions('loanScheme', translations[lang].loanScheme);
+        updateSelectOptions('victim', translations[lang].victim);
     }
 
     function updateSelectOptions(selectId, options) {
@@ -308,6 +308,7 @@
             const formElement = document.getElementById("survey-form");
             const formData = new FormData(formElement);
 
+            alert(formElement);
             // Append reCAPTCHA token to FormData
         formData.append("recaptcha_response", recaptchaToken);
 

@@ -20,7 +20,7 @@
           // Add the reCAPTCHA token to the form as a hidden input          
 
           if (!token) {
-              alert("reCAPTCHA failed. Please refresh and try again.");
+              showNotification("reCAPTCHA failed. Please try again.", "error");
               resetSubmitButton();
               return;
           }
@@ -50,15 +50,15 @@
             .then(data => {
                  console.log("Server Response:", data);
                 if (data.success) {
-                    alert("Form submitted successfully!");
+                    showNotification("Form submitted successfully!", "success");
                     window.location.href = "index.html";
                 } else {
-                    alert("Error submitting form: " + (data.error || "Please try again."));
+                    showNotification("Error submitting form. Please try again.", "error");
                     resetSubmitButton();
                 }
             })
             .catch(error => {
-                alert("There was an error submitting the form. Please try again.");
+                showNotification("Error submitting form. Please try again.", "error");
                 resetSubmitButton();
             });
       
@@ -82,7 +82,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V7",
+            title: "Loan Application V8",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",

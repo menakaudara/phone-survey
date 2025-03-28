@@ -147,6 +147,11 @@
   <script>
     // JavaScript to handle form submission
     function onSubmit() {
+
+      const submitBtn = document.querySelector("button[type='submit']");
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Submitting...";
+      
       grecaptcha.ready(function() {
         grecaptcha.execute('6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO', {action: 'submit'}).then(function(token) {
           // Add the reCAPTCHA token to the form as a hidden input
@@ -159,9 +164,15 @@
       return false;
     }
 
+    function resetSubmitButton() {
+            const submitBtn = document.querySelector("button[type='submit']");
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Submit";
+        }
+
 const translations = {
         en: {
-            title: "Loan Application V8",
+            title: "Loan Application V1",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",

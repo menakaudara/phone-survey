@@ -8,6 +8,142 @@
   <!-- Include Google reCAPTCHA v3 script -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></script> <!-- Replace with your site key -->
 
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .lang-switch {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 16px;
+        }
+    
+        .lang-btn {
+            cursor: pointer;
+            color: #1a5710; /* Google's blue color */
+            text-decoration: none;
+            padding: 5px;
+            font-weight: bold;
+        }
+    
+        .lang-btn:hover {
+            text-decoration: underline;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #818581;
+        }
+
+        .back-btn:hover {
+            background-color: #5d615d;
+        }
+
+    </style>
+  
+</head>
+<body>
+<div class="container">
+        <h2 id="title">Loan Application</h2>
+        <p id="description">Fill in your details below.</p>
+
+        <div class="lang-switch">
+            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
+            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
+        </div>
+<h1>Loan Application Form</h1>
+
+  <form id="loanForm" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" onsubmit="return onSubmit()">
+    <!-- Other form fields -->
+                <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
+            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
+            <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
+
+            <select name="district" id="district" required>
+                <option value="">Select District</option>
+                <option value="Colombo">Colombo</option>
+                <option value="Gampaha">Gampaha</option>
+                <option value="Galle">Galle</option>
+                <option value="Matara">Matara</option>
+            </select>
+
+            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
+
+            <select name="loanScheme" id="loanScheme" required>
+                <option value="">Select Loan Scheme</option>
+                <option value="Scheme1">Scheme 1</option>
+                <option value="Scheme2">Scheme 2</option>
+                <option value="Scheme3">Scheme 3</option>
+                <option value="Scheme4">Scheme 4</option>
+            </select>
+
+            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
+
+            <select name="victim" id="victim" required>
+                <option value="">Are you a victim?</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
+
+    <!-- Hidden input field to hold reCAPTCHA response token -->
+    <input type="hidden" name="recaptcha_response" id="recaptcha_response">
+
+    <button type="submit">Submit</button>
+<button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+    
+  </form>
+</div>
+
   <script>
     // JavaScript to handle form submission
     function onSubmit() {
@@ -149,141 +285,8 @@ document.addEventListener("DOMContentLoaded", function () {
         setLanguage(savedLang);
     
   </script>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
 
-        .container {
-            max-width: 500px;
-            margin: 50px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
 
-        h2 {
-            color: #333;
-        }
-
-        .lang-switch {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 16px;
-        }
-    
-        .lang-btn {
-            cursor: pointer;
-            color: #1a5710; /* Google's blue color */
-            text-decoration: none;
-            padding: 5px;
-            font-weight: bold;
-        }
-    
-        .lang-btn:hover {
-            text-decoration: underline;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input, select {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            width: 95%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        .back-btn {
-            background-color: #818581;
-        }
-
-        .back-btn:hover {
-            background-color: #5d615d;
-        }
-
-    </style>
   
-</head>
-<body>
-<div class="container">
-        <h2 id="title">Loan Application</h2>
-        <p id="description">Fill in your details below.</p>
-
-        <div class="lang-switch">
-            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
-            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
-        </div>
-<h1>Loan Application Form</h1>
-
-  <form id="loanForm" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" onsubmit="return onSubmit()">
-    <!-- Other form fields -->
-                <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
-            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
-            <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
-
-            <select name="district" id="district" required>
-                <option value="">Select District</option>
-                <option value="Colombo">Colombo</option>
-                <option value="Gampaha">Gampaha</option>
-                <option value="Galle">Galle</option>
-                <option value="Matara">Matara</option>
-            </select>
-
-            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
-
-            <select name="loanScheme" id="loanScheme" required>
-                <option value="">Select Loan Scheme</option>
-                <option value="Scheme1">Scheme 1</option>
-                <option value="Scheme2">Scheme 2</option>
-                <option value="Scheme3">Scheme 3</option>
-                <option value="Scheme4">Scheme 4</option>
-            </select>
-
-            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
-
-            <select name="victim" id="victim" required>
-                <option value="">Are you a victim?</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-            </select>
-
-            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
-
-    <!-- Hidden input field to hold reCAPTCHA response token -->
-    <input type="hidden" name="recaptcha_response" id="recaptcha_response">
-
-    <button type="submit">Submit</button>
-<button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
-    
-  </form>
-</div>
-
 </body>
 </html>

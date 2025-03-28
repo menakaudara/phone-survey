@@ -176,7 +176,28 @@
       const formElement = document.getElementById("loanForm");
       const formData = new FormData(formElement);
       const recaptchaResponse = formData.get('recaptcha_response');
-      alert(recaptchaResponse);
+      
+      formData.append("recaptcha_response", recaptchaToken);
+      
+      fetch("https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                 console.log("Server Response:", data);
+                if (data.success) {
+                    alert("Form submitted successfully!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Error submitting form: " + (data.error || "Please try again."));
+                    resetSubmitButton();
+                }
+            })
+            .catch(error => {
+                alert("There was an error submitting the form. Please try again.");
+                resetSubmitButton();
+            });
       
       document.getElementById("loanForm").submit();
     }
@@ -189,7 +210,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V2",
+            title: "Loan Application V4",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",

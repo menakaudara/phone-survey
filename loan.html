@@ -82,7 +82,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V1",
+            title: "Loan Application V2",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -204,11 +204,9 @@ const translations = {
         updateSelectOptions('loanScheme', translations[lang].loanScheme);
         updateSelectOptions('victim', translations[lang].victim);
 
-        document.querySelector("button[type='submit']").innerText = translations[lang].submitBtn;
+        document.querySelector(".button[type='submit']").innerText = translations[lang].submitBtn;
         document.querySelector(".back-btn").innerText = translations[lang].backBtn;
 
-       document.querySelector(".lang-btn-en").innerText = (lang === "en") ? "English" : "ඉංග්‍රීසි";
-        document.querySelector(".lang-btn-si").innerText = (lang === "si") ? "සිංහල" : "Sinhala";
       
       
     }

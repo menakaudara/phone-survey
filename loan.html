@@ -154,14 +154,28 @@
       
       grecaptcha.ready(function() {
         grecaptcha.execute('6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO', {action: 'submit'}).then(function(token) {
-          // Add the reCAPTCHA token to the form as a hidden input
-          document.getElementById("recaptcha_response").value = token;
-          document.getElementById("loanForm").submit();  // Submit the form after setting the token
+          // Add the reCAPTCHA token to the form as a hidden input          
+
+          if (!token) {
+              alert("reCAPTCHA failed. Please refresh and try again.");
+              resetSubmitButton();
+              return;
+          }
+          
+          document.getElementById("recaptcha_response").value = token; 
+          submitForm(token);
+          // Submit the form after setting the token
         });
       });
 
       // Prevent the form from submitting until the reCAPTCHA token is added
       return false;
+    }
+
+    function submitForm(recaptchaToken) {
+      const formElement = document.getElementById("loanForm");
+      const formData = new FormData(formElement);
+      document.getElementById("loanForm").submit();
     }
 
     function resetSubmitButton() {

@@ -161,7 +161,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V5",
+            title: "Loan Application V6",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -280,7 +280,16 @@ const translations = {
         updateSelectOptions('victim', translations[lang].victim);
     }
 
-
+    function updateSelectOptions(selectId, options) {
+        const select = document.getElementById(selectId);
+        select.innerHTML = ""; // Clear existing options
+        for (let key in options) {
+            let option = document.createElement("option");
+            option.value = key;
+            option.text = options[key];
+            select.appendChild(option);
+        }
+    }
     
   </script>
 

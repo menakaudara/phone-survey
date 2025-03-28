@@ -161,7 +161,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V6",
+            title: "Loan Application V7",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -289,6 +289,12 @@ const translations = {
             option.text = options[key];
             select.appendChild(option);
         }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedLang = localStorage.getItem("selectedLanguage") || "en";
+        setLanguage(savedLang);
+
     }
     
   </script>

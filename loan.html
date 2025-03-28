@@ -76,18 +76,20 @@
             notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.style.display = "block";
-            setTimeout(() => { notification.style.display = "none"; }, 3000);
+            setTimeout(() => { notification.style.display = "none"; }, 5000);
         }
 
 
 const translations = {
         en: {
-            title: "Loan Application V10",
+            title: "Loan Application V1",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
             nic: "NIC Number",
             address: "Address",
+            submitBtn: "Submit",
+            backBtn: "Back to Home",
             district: {
                     "": "Select District",
                     "Colombo": "Colombo",
@@ -135,10 +137,12 @@ const translations = {
         si: {
             title: "ණය අයදුම්පත",
             description: "කරුණාකර ඔබගේ විස්තර ඇතුළත් කරන්න.",
-            submitBtn: "ඉදිරිපත් කරන්න",
+            submitBtn: "පුරවා අවසන්",
             name: "ඔබගේ නම",
             nic: "ජාතික හැඳුනුම්පත",
             address: "ලිපිනය",
+            submitBtn: "Submit",
+            backBtn: "ප්‍රධාන පිටුවට",
             district: {
                 "": "දිස්ත්‍රික්කය තෝරන්න",
                 "Colombo": "කොළඹ",
@@ -199,6 +203,14 @@ const translations = {
         updateSelectOptions('district', translations[lang].district);
         updateSelectOptions('loanScheme', translations[lang].loanScheme);
         updateSelectOptions('victim', translations[lang].victim);
+
+        document.querySelector("button[type='submit']").innerText = translations[lang].submitBtn;
+        document.querySelector(".back-btn").innerText = translations[lang].backBtn;
+
+       document.querySelector(".lang-btn-en").innerText = (lang === "en") ? "English" : "ඉංග්‍රීසි";
+        document.querySelector(".lang-btn-si").innerText = (lang === "si") ? "සිංහල" : "Sinhala";
+      
+      
     }
 
     function updateSelectOptions(selectId, options) {
@@ -325,8 +337,8 @@ const translations = {
         <p id="description">Fill in your details below.</p>
 
         <div class="lang-switch">
-            <span class="lang-btn" onclick="setLanguage('en')">English</span> | 
-            <span class="lang-btn" onclick="setLanguage('si')">සිංහල</span>
+            <span class="lang-btn lang-btn-en" onclick="setLanguage('en')">English</span> | 
+            <span class="lang-btn lang-btn-si" onclick="setLanguage('si')">සිංහල</span>
         </div>
 <h1>Loan Application Form</h1>
 

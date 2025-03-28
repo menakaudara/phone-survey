@@ -175,6 +175,9 @@
     function submitForm(recaptchaToken) {
       const formElement = document.getElementById("loanForm");
       const formData = new FormData(formElement);
+      const recaptchaResponse = formData.get('recaptcha_response');
+      alert(recaptchaResponse);
+      
       document.getElementById("loanForm").submit();
     }
 
@@ -186,7 +189,7 @@
 
 const translations = {
         en: {
-            title: "Loan Application V1",
+            title: "Loan Application V2",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",

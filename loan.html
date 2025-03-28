@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loan Application Form V1</title>
+  <title>Loan Application Form</title>
   
   <!-- Include Google reCAPTCHA v3 script -->
   <script src="https://www.google.com/recaptcha/api.js?render=6LcrhQErAAAAADLYslZ7JSM019tsgWHTkVyz4NCO"></script> <!-- Replace with your site key -->
@@ -76,13 +76,13 @@
             notification.textContent = message;
             notification.className = `notification ${type}`;
             notification.style.display = "block";
-            setTimeout(() => { notification.style.display = "none"; }, 5000);
+            setTimeout(() => { notification.style.display = "none"; }, 7000);
         }
 
 
 const translations = {
         en: {
-            title: "Loan Application V2",
+            title: "Loan Application V3",
             description: "Fill in your details below.",
             submitBtn: "Submit",
             name: "Your Name",
@@ -204,9 +204,8 @@ const translations = {
         updateSelectOptions('loanScheme', translations[lang].loanScheme);
         updateSelectOptions('victim', translations[lang].victim);
 
-        document.querySelector(".button[type='submit']").innerText = translations[lang].submitBtn;
-        document.querySelector(".back-btn").innerText = translations[lang].backBtn;
-
+        document.getElementById("btn_submit").innerText = translations[lang].submitBtn;
+        document.getElementById("btn_back").innerText = translations[lang].backBtn;
       
       
     }
@@ -367,8 +366,8 @@ const translations = {
     <!-- Hidden input field to hold reCAPTCHA response token -->
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">
 
-    <button type="submit">Submit</button>
-<button type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
+    <button id="btn_submit" type="submit">Submit</button>
+<button id="btn_back" type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
     
   </form>
 </div>

@@ -95,7 +95,8 @@ const translations = {
             currentInterestRate: "Current Interest Rate",
             currentInstallment: "Current Installment",
             loanPeriod: "Loan Period (Years)",
-            loanEndDate: "Loan End Date",            
+            loanEndDate: "Loan End Date",   
+            mobileNo: "දුරකතන අංකය",
             district: {
                     "": "Select District",
                     "Colombo": "Colombo",
@@ -157,6 +158,7 @@ const translations = {
             currentInterestRate: "වත්මන් පොලී අනුපාතය",
             currentInstallment: "වත්මන් වාරිකය",
             loanPeriod: "ණය කාල සීමාව (අවුරුදු) ",
+            loanEndDate: "ණය අවසන්වන දිනය",
             loanEndDate: "ණය අවසන්වන දිනය",
             district: {
                 "": "දිස්ත්‍රික්කය තෝරන්න",
@@ -225,6 +227,7 @@ const translations = {
         document.getElementById("currentInstallment").placeholder = translations[lang].currentInstallment;
         document.getElementById("loanPeriod").placeholder = translations[lang].loanPeriod;
         document.getElementById("loanEndDate").placeholder = translations[lang].loanEndDate;
+         document.getElementById("mobileNo").placeholder = translations[lang].mobileNo;
       
         updateSelectOptions('district', translations[lang].district);
         updateSelectOptions('loanScheme', translations[lang].loanScheme);
@@ -397,6 +400,7 @@ const translations = {
             <input type="text" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200">
             <input type="text" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200">
             <input type="text" name="loanEndDate" id="loanEndDate" placeholder="Loan End Date" maxlength="200">
+            <input type="text" name="mobileNo" id="mobileNo" placeholder="Mobile No" maxlength="200">
 
     <!-- Hidden input field to hold reCAPTCHA response token -->
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">

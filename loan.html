@@ -89,6 +89,7 @@ const translations = {
             address: "Address",
             submitBtn: "Submit",
             backBtn: "Back to Home",
+            clearBtn: "Clear All",
             loanStartDate: "Loan Start Date",
             initialInterestRate: "Initial Interest Rate",
             initialInstallment: "Initial Installment",
@@ -153,6 +154,7 @@ const translations = {
             nic: "ජාතික හැඳුනුම්පත",
             address: "ලිපිනය",
             backBtn: "ප්‍රධාන පිටුවට",
+            clearBtn: "සියල්ල හිස් කරන්න",
             loanStartDate: "ණය ආරම්භක දිනය",
             initialInterestRate: "ආරම්භක පොලී අනුපාතය",
             initialInstallment: "ආරම්භක වාරිකය",
@@ -242,6 +244,17 @@ const translations = {
       
     }
 
+
+    function clearForm() {
+      document.querySelectorAll("input, select, textarea").forEach(element => {
+          if (element.tagName === "SELECT") {
+              element.selectedIndex = 0; // Reset dropdowns to the first option
+          } else {
+              element.value = ""; // Clear text inputs
+          }
+      });
+    }
+    
     function updateSelectOptions(selectId, options) {
         const select = document.getElementById(selectId);
         select.innerHTML = ""; // Clear existing options
@@ -407,6 +420,7 @@ const translations = {
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">
 
     <button id="btn_submit" type="submit">Submit</button>
+    <button id="btn_clear" onclick="clearForm()">Clear</button>
 <button id="btn_back" type="button" class="back-btn" onclick="window.location.href='index.html'">Back to Home</button>
     
   </form>

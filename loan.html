@@ -97,6 +97,7 @@ const translations = {
             loanPeriod: "Loan Period (Years)",
             loanEndDate: "Loan End Date",   
             mobileNo: "Mobile No",
+            extramesage: "Please enter the data below if you can. It will help us with our analysis.",
             district: {
                     "": "Select District",
                     "Colombo": "Colombo",
@@ -161,6 +162,7 @@ const translations = {
             loanEndDate: "ණය අවසන්වන දිනය",
             loanEndDate: "ණය අවසන්වන දිනය",
             mobileNo: "දුරකතන අංකය",
+            extramesage: "ඔබට හැකි නම් පහත දත්ත ඇතුළත් කරන්න. එය අපගේ විශ්ලේෂණයට උපකාරී වනු ඇත.",
             district: {
                 "": "දිස්ත්‍රික්කය තෝරන්න",
                 "Colombo": "කොළඹ",
@@ -390,7 +392,7 @@ const translations = {
             </select>
             <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
             <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
-            <p style="margin-top: 8px;">Please enter the data below if you can. It will help us with our analysis.</p>
+            <p name="extramesage" id="extramesage" style="margin-top: 5px; color: gray;">Please enter the data below if you can. It will help us with our analysis.</p>
             <input type="number" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200" min="0" step="1">
             <input type="number" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200" min="0" step="0.01">
             <input type="date" name="loanStartDate" id="loanStartDate" placeholder="Loan Start Date" maxlength="200">

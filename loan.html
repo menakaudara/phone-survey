@@ -255,6 +255,9 @@ const translations = {
         const savedLang = localStorage.getItem("selectedLanguage") || "en";
         setLanguage(savedLang);
 
+        let today = new Date().toISOString().split("T")[0];
+        document.getElementById("loanStartDate").setAttribute("min", today);
+
     });
     
   </script>
@@ -388,13 +391,13 @@ const translations = {
             <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
             <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
             
-            <input type="number" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200">
-            <input type="number" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200">
+            <input type="number" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200" min="0" step="1">
+            <input type="number" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200" min="0" step="0.01">
             <input type="date" name="loanStartDate" id="loanStartDate" placeholder="Loan Start Date" maxlength="200">
-            <input type="number" name="initialInterestRate" id="initialInterestRate" placeholder="Initial Interest Rate" maxlength="200">
-            <input type="number" name="initialInstallment" id="initialInstallment" placeholder="Initial Installment" maxlength="200">
-            <input type="number" name="currentInterestRate" id="currentInterestRate" placeholder="Current Interest Rate" maxlength="200">
-            <input type="number" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200">
+            <input type="number" name="initialInterestRate" id="initialInterestRate" placeholder="Initial Interest Rate" maxlength="200" min="0" step="0.01">
+            <input type="number" name="initialInstallment" id="initialInstallment" placeholder="Initial Installment" maxlength="200" min="0" step="1">
+            <input type="number" name="currentInterestRate" id="currentInterestRate" placeholder="Current Interest Rate" maxlength="200" min="0" step="1">
+            <input type="number" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200" min="0" step="0.01">
             <input type="date" name="loanEndDate" id="loanEndDate" placeholder="Loan End Date" maxlength="200">
             <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">            
 

@@ -89,6 +89,13 @@ const translations = {
             address: "Address",
             submitBtn: "Submit",
             backBtn: "Back to Home",
+            loanStartDate: "Loan Start Date",
+            initialInterestRate: "Initial Interest Rate",
+            initialInstallment: "Initial Installment",
+            currentInterestRate: "Current Interest Rate",
+            currentInstallment: "Current Installment",
+            loanPeriod: "Loan Period (Years)",
+            loanEndDate: "Loan End Date",            
             district: {
                     "": "Select District",
                     "Colombo": "Colombo",
@@ -123,7 +130,10 @@ const translations = {
                 "Ranaviru": "Ranaviru Loan Scheme",
                 "Government": "Government Loan Scheme",
                 "SME": "SME Loan Scheme",
-                "Pension": "Pension Loan Scheme"
+                "Pension": "Pension Loan Scheme",
+                "personal": "Personal Loan Scheme",
+                "housing": "Housing Loan Scheme",
+                "other": "Other Loan Scheme"              
             },
             loanNo: "Loan Number",
             victim: {
@@ -141,6 +151,13 @@ const translations = {
             nic: "ජාතික හැඳුනුම්පත",
             address: "ලිපිනය",
             backBtn: "ප්‍රධාන පිටුවට",
+            loanStartDate: "ණය ආරම්භක දිනය",
+            initialInterestRate: "ආරම්භක පොලී අනුපාතය",
+            initialInstallment: "ආරම්භක වාරිකය",
+            currentInterestRate: "වත්මන් පොලී අනුපාතය",
+            currentInstallment: "වත්මන් වාරිකය",
+            loanPeriod: "ණය කාල සීමාව (අවුරුදු) ",
+            loanEndDate: "ණය අවසන්වන දිනය",
             district: {
                 "": "දිස්ත්‍රික්කය තෝරන්න",
                 "Colombo": "කොළඹ",
@@ -175,7 +192,10 @@ const translations = {
                 "Ranaviru": "රණවිරු ණය නියෝජනා ක්‍රමය",
                 "Government": "රාජ්‍ය සේවක ණය නියෝජනා ක්‍රමය",
                 "SME": "ව්‍යවසාය ණය නියෝජනා ක්‍රමය",
-                "Pension": "විශ්‍රාමික ණය නියෝජනා ක්‍රමය"
+                "Pension": "විශ්‍රාමික ණය නියෝජනා ක්‍රමය",
+                "personal": "පුද්ගලික ණය යෝජනා ක්‍රමය",
+                "housing": "නිවාස ණය යෝජනා ක්‍රමය",
+                "other": "වෙනත් ණය යෝජනා ක්‍රමය", 
             },
             loanNo: "ණය අංකය",
             victim: {
@@ -198,6 +218,14 @@ const translations = {
         document.getElementById("loanNo").placeholder = translations[lang].loanNo;
         document.getElementById("remarks").placeholder = translations[lang].remarks;
 
+        document.getElementById("loanStartDate").placeholder = translations[lang].loanStartDate;
+        document.getElementById("initialInterestRate").placeholder = translations[lang].initialInterestRate;
+        document.getElementById("initialInstallment").placeholder = translations[lang].initialInstallment;
+        document.getElementById("currentInterestRate").placeholder = translations[lang].currentInterestRate;
+        document.getElementById("currentInstallment").placeholder = translations[lang].currentInstallment;
+        document.getElementById("loanPeriod").placeholder = translations[lang].loanPeriod;
+        document.getElementById("loanEndDate").placeholder = translations[lang].loanEndDate;
+      
         updateSelectOptions('district', translations[lang].district);
         updateSelectOptions('loanScheme', translations[lang].loanScheme);
         updateSelectOptions('victim', translations[lang].victim);
@@ -341,7 +369,7 @@ const translations = {
     <!-- Other form fields -->
                 <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
             <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
-            <input type="text" name="address" id="address" placeholder="Address" maxlength="200" required>
+            <input type="text" name="address" id="address" placeholder="Address" maxlength="200">
 
             <select name="district" id="district" required>
                 <option value="">Select District</option>
@@ -360,6 +388,15 @@ const translations = {
             </select>
 
             <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
+    
+            <input type="text" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200">
+            <input type="text" name="loanStartDate" id="loanStartDate" placeholder="Loan Start Date" maxlength="200">
+            <input type="text" name="initialInterestRate" id="initialInterestRate" placeholder="Initial Interest Rate" maxlength="200">
+            <input type="text" name="initialInstallment" id="initialInstallment" placeholder="Initial Installment" maxlength="200">
+            <input type="text" name="currentInterestRate" id="currentInterestRate" placeholder="Current Interest Rate" maxlength="200">
+            <input type="text" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200">
+            <input type="text" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200">
+            <input type="text" name="loanEndDate" id="loanEndDate" placeholder="Loan End Date" maxlength="200">
 
     <!-- Hidden input field to hold reCAPTCHA response token -->
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">

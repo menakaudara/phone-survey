@@ -371,37 +371,32 @@ const translations = {
 
   <form id="loanForm" action="https://script.google.com/macros/s/AKfycbxqGuegGd90yMdWoIugv3wEnMvXB3Kf_62lvgiDn1bwi_DUQuyn5W6djyomn4RxVg1rnQ/exec" method="POST" onsubmit="return onSubmit()">
     <!-- Other form fields -->
-                <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
-            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>
+    
+            <input type="text" name="name" id="name" placeholder="Your Name" maxlength="100" required>
+            <input type="text" name="mobileNo" id="mobileNo" placeholder="Mobile No" maxlength="13" required>
+            <input type="text" name="nic" id="nic" placeholder="NIC Number" maxlength="20" required>            
             <input type="text" name="address" id="address" placeholder="Address" maxlength="200">
-
-            <select name="district" id="district" required>
-                <option value="">Select District</option>
-            </select>
-
-            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
-
-            <select name="loanScheme" id="loanScheme" required>
-                <option value="">Select Loan Scheme</option>
-            </select>
-
-            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
-
             <select name="victim" id="victim" required>
                 <option value="">Are you a victim?</option>
             </select>
-
-            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">
-    
-            <input type="text" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200">
-            <input type="text" name="loanStartDate" id="loanStartDate" placeholder="Loan Start Date" maxlength="200">
-            <input type="text" name="initialInterestRate" id="initialInterestRate" placeholder="Initial Interest Rate" maxlength="200">
-            <input type="text" name="initialInstallment" id="initialInstallment" placeholder="Initial Installment" maxlength="200">
-            <input type="text" name="currentInterestRate" id="currentInterestRate" placeholder="Current Interest Rate" maxlength="200">
-            <input type="text" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200">
-            <input type="text" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200">
-            <input type="text" name="loanEndDate" id="loanEndDate" placeholder="Loan End Date" maxlength="200">
-            <input type="text" name="mobileNo" id="mobileNo" placeholder="Mobile No" maxlength="200">
+            <select name="loanScheme" id="loanScheme" required>
+                <option value="">Select Loan Scheme</option>
+            </select>
+            <select name="district" id="district" required>
+                <option value="">Select District</option>
+            </select>
+            <input type="text" name="bankBranch" id="bankBranch" placeholder="Bank Branch" maxlength="20" required>
+            <input type="text" name="loanNo" id="loanNo" placeholder="Loan Number" maxlength="20" required>
+            
+            <input type="number" name="loanPeriod" id="loanPeriod" placeholder="Loan Period" maxlength="200">
+            <input type="number" name="loanAmount" id="loanAmount" placeholder="Loan Amount" maxlength="200">
+            <input type="date" name="loanStartDate" id="loanStartDate" placeholder="Loan Start Date" maxlength="200">
+            <input type="number" name="initialInterestRate" id="initialInterestRate" placeholder="Initial Interest Rate" maxlength="200">
+            <input type="number" name="initialInstallment" id="initialInstallment" placeholder="Initial Installment" maxlength="200">
+            <input type="number" name="currentInterestRate" id="currentInterestRate" placeholder="Current Interest Rate" maxlength="200">
+            <input type="number" name="currentInstallment" id="currentInstallment" placeholder="Current Installment" maxlength="200">
+            <input type="date" name="loanEndDate" id="loanEndDate" placeholder="Loan End Date" maxlength="200">
+            <input type="text" name="remarks" id="remarks" placeholder="Remarks" maxlength="200">            
 
     <!-- Hidden input field to hold reCAPTCHA response token -->
     <input type="hidden" name="recaptcha_response" id="recaptcha_response">

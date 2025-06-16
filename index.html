@@ -1,27 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to SDB Loan Protestors Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    p {
+      color: #555;
+      margin: 20px 0 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 16px;
+      color: white;
+      background-color: #28a745;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #218838;
+    }
+
+    .lang-switch {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+
+    .lang-btn {
+      cursor: pointer;
+      color: #1a5710;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    .lang-btn:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="title">My Portfolio</h1>
-        
 
-        <h2 id="about-title">About Me</h2>
-        <p id="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+  <div class="container">
+    <h1 id="homeTitle">Welcome to SDB Loan Application Portal</h1>
+    <p id="homeIntro">Apply easily for your desired loan scheme using our secure online form.</p>
 
-        <h2 id="exp-title">Experience</h2>
-        <p id="exp-1">✔ Noteworthy achievement here.</p>
-
-        <h2 id="projects-title">Projects</h2>
-        <p id="project-1">📌 Project title 1</p>
-        <p id="project-2">📌 Project title 2</p>
-        <p id="project-3">📌 Project title 3</p>
-        
+    <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+      <a href="https://lankavoice.org/loan.html" class="btn" id="externalLoanBtn">Go to LankaVoice Loan Form</a>
     </div>
+
+    <div class="lang-switch">
+      <span class="lang-btn" onclick="setHomeLanguage('en')">English</span> | 
+      <span class="lang-btn" onclick="setHomeLanguage('si')">සිංහල</span>
+    </div>
+  </div>
+
+  <script>
+    const homeLangTexts = {
+      en: {
+        title: "Welcome to SDB Loan Application Portal",
+        intro: "Apply easily for your desired loan scheme using our secure online form.",
+        button: "Apply Now",
+        externalBtn: "Go to LankaVoice Loan Form"
+      },
+      si: {
+        title: "SDB ණය අයදුම්කරණ ව්‍යාපෘතියට පිළිගනිමු",
+        intro: "ඔබට අවශ්‍ය ණය යෝජනා ක්‍රමය සඳහා පහසුවෙන් අයදුම් කරන්න.",
+        button: "අයදුම් කරන්න",
+        externalBtn: "LankaVoice ණය පෝරමය වෙත යන්න"
+      }
+    };
+
+    function setHomeLanguage(lang) {
+      localStorage.setItem("selectedLanguage", lang);
+      document.getElementById("homeTitle").innerText = homeLangTexts[lang].title;
+      document.getElementById("homeIntro").innerText = homeLangTexts[lang].intro;
+      //document.getElementById("applyNowBtn").innerText = homeLangTexts[lang].button;
+      document.getElementById("externalLoanBtn").innerText = homeLangTexts[lang].externalBtn;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem("selectedLanguage") || "en";
+      setHomeLanguage(savedLang);
+    });
+  </script>
+
 </body>
 </html>
